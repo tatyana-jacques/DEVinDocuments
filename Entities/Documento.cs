@@ -72,7 +72,7 @@ namespace DevInDocuments.Entities
 
 
         }
-        public void AterarStatus(StatusDocumento status)
+        public void AlterarStatus(StatusDocumento status)
         {
             Status = status;
 
