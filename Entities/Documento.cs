@@ -4,8 +4,10 @@ namespace DevInDocuments.Entities
 {
     public class Documento
     {
-        public int CodigoDocumento { get; set; }
-        private DateTime DataCadastro { get; set; }
+
+        private DateTime dataCadastro;
+        public string CodigoDocumento { get; set; }
+        
         protected DateTime DataAlteracao { get; set; }
         public string NomeEstabelecimento { get; set; }
         public string CNPJ { get; set; }
@@ -13,38 +15,38 @@ namespace DevInDocuments.Entities
 
         public int IdentificacaoFuncionario { get; set; }
 
-        public Documento(
-            int codigoDocumento,
-            string nomeEstabelecimento,
-            string cnpj,
-            StatusDocumento status,
-            int identificacaoFuncionario)
-        {
-            if (nomeEstabelecimento == null)
-            {
-                throw new CampoNuloException("Insira um nome de estabelecimento válido.");
-            }
-            if (cnpj == null)
-            {
-                throw new CampoNuloException("Insira um nome CNPJ válido.");
-            }
-            CodigoDocumento = codigoDocumento;
-            NomeEstabelecimento = nomeEstabelecimento;
-            CNPJ = cnpj;
-            DataCadastro = DateTime.Now;
-            DataAlteracao = DateTime.Now;
-            IdentificacaoFuncionario = identificacaoFuncionario;
-        }
+        // public Documento(
+        //     int codigoDocumento,
+        //     string nomeEstabelecimento,
+        //     string cnpj,
+        //     StatusDocumento status,
+        //     int identificacaoFuncionario)
+        // {
+        //     if (nomeEstabelecimento == null)
+        //     {
+        //         throw new CampoNuloException("Insira um nome de estabelecimento válido.");
+        //     }
+        //     if (cnpj == null)
+        //     {
+        //         throw new CampoNuloException("Insira um nome CNPJ válido.");
+        //     }
+        //     CodigoDocumento = codigoDocumento;
+        //     NomeEstabelecimento = nomeEstabelecimento;
+        //     CNPJ = cnpj;
+        //     dataCadastro = DateTime.Now;
+        //     DataAlteracao = DateTime.Now;
+        //     IdentificacaoFuncionario = identificacaoFuncionario;
+        // }
 
-        public void CadastrarDocumento(Documento documento, List<Documento> lista)
+        public void CadastrarDocumento(Documento documento)
         {
-            lista.Add(documento);
+            //lista.Add(documento);
         }
 
         public virtual void ListarDocumento()
         {
             Console.WriteLine(@$"Código do documento: {CodigoDocumento};
-        Data do Cadastro: {DataCadastro};
+        Data do Cadastro: {dataCadastro};
         Data da última alteração: {DataAlteracao};
         Nome do Estabelecimento: {NomeEstabelecimento};
         CNPJ: {CNPJ};
