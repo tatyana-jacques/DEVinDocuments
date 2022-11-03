@@ -4,8 +4,8 @@ namespace DevInDocuments.Entities
     public class Contrato : DevInDocuments
     {
         public string Finalidade;
-        public string [] Testemunhas = new string [2];
-        public DateTime DataExpiração {get;set;}
+        public string[] Testemunhas = new string[2];
+        public DateTime DataExpiracao { get; set; }
 
         public Contrato(
            string nomeEstabelecimento,
@@ -21,9 +21,8 @@ namespace DevInDocuments.Entities
                 throw new CampoNuloException("Insira um endereço válido.");
             }
 
-
             Finalidade = finalidade;
-           
+
         }
         public Contrato(
            string nomeEstabelecimento,
@@ -32,7 +31,7 @@ namespace DevInDocuments.Entities
            string finalidade,
            string statusDocumento,
            DateTime dataExpiracao,
-           string [] testemunhas
+           string[] testemunhas
            ) :
            base(nomeEstabelecimento, cnpj, identificacaoFuncionario, statusDocumento)
         {
@@ -43,9 +42,9 @@ namespace DevInDocuments.Entities
 
 
             Finalidade = finalidade;
-            DataExpiração = dataExpiracao;
+            DataExpiracao = dataExpiracao;
             Testemunhas = testemunhas;
-           
+
         }
         public override void CadastrarDocumento(DevInDocuments documento)
         {
@@ -54,26 +53,32 @@ namespace DevInDocuments.Entities
 
         public override void ListarDocumento()
         {
+             foreach (Contrato x in Listas.ListaContratos)
+            {
+                Console.WriteLine(x);
+            }
         }
 
-        public override void AlterarItensDocumento(
-            string nomeEstabelecimento,
-            string cnpj,
-            string identificacaoFuncionario)
+        public override void AlterarDocumento()
         {
-            if (nomeEstabelecimento == null)
-            {
-                throw new CampoNuloException("Insira um nome de estabelecimento válido.");
-            }
-            if (cnpj == null)
-            {
-                throw new CampoNuloException("Insira um nome de estabelecimento válido.");
-            }
-            NomeEstabelecimento = nomeEstabelecimento;
-            CNPJ = cnpj;
-            DataAlteracao = DateTime.Now;
-            IdentificacaoFuncionario = identificacaoFuncionario;
+
         }
+
+          public override string ToString()
+        {
+            return @$"Dados do contrato:
+            Código do documento : {codigoDocumento};
+            Data de cadastro : {dataCadastro};
+            Status do documento: {StatusDocumento};
+            Nome do Estabelecimento: {NomeEstabelecimento};
+            CNPJ: {CNPJ};
+            Identificação do Funcionário: {IdentificacaoFuncionario};
+            Finalidade: {Finalidade};
+            Data de expiração: {DataExpiracao.ToString ("dd/MM/yyyy")}
+            Testemunhas: {string.Join(", ", Testemunhas)}
+            =========================================================";
+        }
+
 
     }
 }

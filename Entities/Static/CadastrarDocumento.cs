@@ -23,6 +23,11 @@ namespace DevInDocuments.Entities.Static
                         CadastrarNotaFiscal.CadastroNotaFiscal(funcionario);
                         escolhaTipoDocumento = true;
                     }
+                    if (escolhaUsuarioDocumento == "2")
+                    {
+                        CadastrarLicenca.cadastroLicenca(funcionario);
+                        escolhaTipoDocumento = true;
+                    }
 
                     else 
                     {

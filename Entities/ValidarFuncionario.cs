@@ -15,8 +15,7 @@ namespace DevInDocuments.Entities
 
                     identidadeInserida = Console.ReadLine() ?? string.Empty;
                     var identidadeEncontrada = Listas.ListaFuncionarios().Where(p => p.Id == identidadeInserida).First();
-                    Console.WriteLine(@$"Bem vindo(a) ao sistema de cadastro e consulta de documentos.
-                    {identidadeEncontrada}");
+                    Console.WriteLine($"Bem vindo(a) ao sistema de cadastro e consulta de documentos.{identidadeEncontrada}");
                     Console.WriteLine();
                     Console.WriteLine("==============================================");
                     usuarioIdentificado = true;

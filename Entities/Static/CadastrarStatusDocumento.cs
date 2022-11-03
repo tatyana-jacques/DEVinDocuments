@@ -30,7 +30,7 @@ namespace DevInDocuments.Entities.Static
                 }
                 else
                 {
-                    return "Escolha uma opção válida.";
+                    Console.WriteLine ("Escolha uma opção válida.");
                 }
 
             }

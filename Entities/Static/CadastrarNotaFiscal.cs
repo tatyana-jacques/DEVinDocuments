@@ -39,13 +39,14 @@ namespace DevInDocuments.Entities.Static
             nota.StatusDocumento = CadastrarStatusDocumento.CadastroStatus().ToString();
 
             //Set nome do produto
-            while (nota.NomeProduto ==string.Empty){
-            Console.WriteLine("Insira o nome do produto: ");
-            nota.NomeProduto = Console.ReadLine() ?? string.Empty;
+            while (nota.NomeProduto == string.Empty)
+            {
+                Console.WriteLine("Insira o nome do produto: ");
+                nota.NomeProduto = Console.ReadLine() ?? string.Empty;
             }
 
             //Set valor do produto
-             Console.WriteLine("Insira o valor total do produto: ");
+            Console.WriteLine("Insira o valor total do produto: ");
             while (verificarValorTotal == false)
             {
                 verificarValorTotal = decimal.TryParse(Console.ReadLine(), out valorTotalInserido);
@@ -60,43 +61,44 @@ namespace DevInDocuments.Entities.Static
             //Set tipo de imposto
             while (escolhaTipoImposto == false)
             {
-                    Console.WriteLine(@$"Escolha o número equivalente ao tipo de imposto: 
+                Console.WriteLine(@$"Escolha o número equivalente ao tipo de imposto: 
                                 1- ICMS;
                                 2- IPI;
                                 3-IOF;
                                 4-Outro;");
-                    var escolhaImpostoUsuario = Console.ReadLine() ?? string.Empty;
-                    if (escolhaImpostoUsuario == "1")
-                    {
-                        escolhaImpostoUsuario = "ICMS";
-                        escolhaTipoImposto = true;
-                    }
-                    else if (escolhaImpostoUsuario == "2")
-                    {
-                        escolhaImpostoUsuario = "IPI";
-                        escolhaTipoImposto = true;
+                var escolhaImpostoUsuario = Console.ReadLine() ?? string.Empty;
+                if (escolhaImpostoUsuario == "1")
+                {
+                    escolhaImpostoUsuario = "ICMS";
+                    escolhaTipoImposto = true;
+                }
+                else if (escolhaImpostoUsuario == "2")
+                {
+                    escolhaImpostoUsuario = "IPI";
+                    escolhaTipoImposto = true;
 
-                    }
-                    else if (escolhaImpostoUsuario == "3")
-                    {
-                        escolhaImpostoUsuario = "IOF";
-                        escolhaTipoImposto = true;
+                }
+                else if (escolhaImpostoUsuario == "3")
+                {
+                    escolhaImpostoUsuario = "IOF";
+                    escolhaTipoImposto = true;
 
-                    }
-                    else if (escolhaImpostoUsuario == "4")
-                    {
-                        escolhaImpostoUsuario = "Outro";
-                        escolhaTipoImposto = true;
-                    }
-                    else {
-                        Console.WriteLine ("Escolha uma opção válida.");
-                    }
-                   
-                    nota.TipoImposto = escolhaImpostoUsuario;
-               
+                }
+                else if (escolhaImpostoUsuario == "4")
+                {
+                    escolhaImpostoUsuario = "Outro";
+                    escolhaTipoImposto = true;
+                }
+                else
+                {
+                    Console.WriteLine("Escolha uma opção válida.");
+                }
+
+                nota.TipoImposto = escolhaImpostoUsuario;
+
             }
 
-
+            //Set valor do imposto
             while (verificarValorImposto == false)
             {
                 Console.WriteLine("Insira o valor do imposto: ");

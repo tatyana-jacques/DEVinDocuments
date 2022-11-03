@@ -13,7 +13,8 @@ namespace DevInDocuments.Entities.Static
                     1- Listar todos os documentos;
                     2- Listar Notas Fiscais;
                     3-Listar Licenças de Funcionamento;
-                    4-Voltar ao Menu Inicial."
+                    4-Listar Contratos;
+                    5-Voltar ao Menu Inicial."
                        );
 
                 var escolhaMenuListar = Console.ReadLine();
@@ -21,6 +22,8 @@ namespace DevInDocuments.Entities.Static
 
                 if (escolhaMenuListar == "1")
                 {
+                    Listas.ListarTodosDocumentos();
+                     //entrarMenuListarDocumentos = false;
 
 
                 }
@@ -34,18 +37,39 @@ namespace DevInDocuments.Entities.Static
                         tipoImposto: string.Empty,
                         statusDocumento: string.Empty);
                     nota.ListarDocumento();
-                    entrarMenuListarDocumentos = false;
+                    //entrarMenuListarDocumentos = false;
+
+                }
+                if (escolhaMenuListar == "3")
+                {
+                    LicencaFuncionamento licenca = new LicencaFuncionamento(string.Empty,
+                        cnpj: string.Empty,
+                        identificacaoFuncionario: string.Empty,
+                        endereco: string.Empty,
+                        areaAtuacao: string.Empty,
+                        statusDocumento: string.Empty);
+                    licenca.ListarDocumento();
+                    //entrarMenuListarDocumentos = false;
 
                 }
                 if (escolhaMenuListar == "4")
+                {
+                    Contrato contrato = new Contrato(string.Empty,
+                        cnpj: string.Empty,
+                        identificacaoFuncionario: string.Empty,
+                        finalidade: string.Empty,
+                        statusDocumento: string.Empty);
+                    contrato.ListarDocumento();
+                    //entrarMenuListarDocumentos = false;
+
+                }
+                if (escolhaMenuListar == "5")
                 {
                     entrarMenuListarDocumentos = true;
                     MenuPrincipal.MenuInicial(funcionario);
                 }
 
             }
-
-
 
         }
     }
