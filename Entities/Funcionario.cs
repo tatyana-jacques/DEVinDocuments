@@ -4,7 +4,7 @@ namespace DevInDocuments.Entities
 {
     public class Funcionario
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Nome { get; set; }
         public string Endereco { get; set; }
         public DateTime DataNascimento { get; set; }
@@ -12,7 +12,7 @@ namespace DevInDocuments.Entities
         public DateTime DataAdmissao { get; set; }
 
         public Funcionario(
-            int id,
+            string id,
             string nome,
             string endereco,
             DateTime dataNascimento,
@@ -53,14 +53,13 @@ namespace DevInDocuments.Entities
 
         public override string ToString()
         {
-            return
-        @$"Dados do funcionário operando:
-        Identidade: {Id};
-        Nome: {Nome};
-        Endereço: {Endereco};
-        Data de nascimento: {DataNascimento.ToString("dd/MM/yyyy")};
-        Filiação: {string.Join(", ", Filiacao)};
-        Data de admissão: {DataAdmissao.ToString("dd/MM/yyyy")}";
+        return @$"Dados do funcionário operando:
+            Identidade: {Id};
+            Nome: {Nome};
+            Endereço: {Endereco};
+            Data de nascimento: {DataNascimento.ToString("dd/MM/yyyy")};
+            Filiação: {string.Join(", ", Filiacao)};
+            Data de admissão: {DataAdmissao.ToString("dd/MM/yyyy")}";
 
         }
     }
