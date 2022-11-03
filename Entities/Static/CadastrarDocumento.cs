@@ -22,7 +22,7 @@ namespace DevInDocuments.Entities.Static
             nota.IdentificacaoFuncionario = funcionario;
 
             //Set nome do estabelecimento
-            while (nota.NomeEstabelecimento == string.Empty)
+            while (nomeEstabelecientoInserido == string.Empty)
             {
                 Console.Write("Insira o nome do estabelecimento: ");
                 nomeEstabelecientoInserido = Console.ReadLine() ?? string.Empty;
@@ -37,39 +37,39 @@ namespace DevInDocuments.Entities.Static
             }
 
             //Set status
-             while (escolhaStatusDocumento == false)
+            while (escolhaStatusDocumento == false)
+            {
+                try
                 {
-                    try
-                    {
-                        Console.WriteLine(@$"Selecione o número equivalente ao status do documento: 
+                    Console.WriteLine(@$"Selecione o número equivalente ao status do documento: 
                         1-Ativo;
                         2-Em transição;
                         3-Suspenso.");
-                        var statusDocumentoInserido = Console.ReadLine() ?? string.Empty;
-                        if (statusDocumentoInserido == "1")
-                        {
-                            statusDocumentoInserido = "Ativo";
-                            escolhaStatusDocumento = true;
-                        }
-                        else if (statusDocumentoInserido == "2")
-                        {
-                            statusDocumentoInserido = "Em transição.";
-                            escolhaStatusDocumento = true;
-                        }
-                        else if (statusDocumentoInserido == "3")
-                        {
-                            statusDocumentoInserido = "Suspenso";
-                            escolhaStatusDocumento = true;
-                        }
-                        else
-                        {
-                            throw new OpcaoInexistenteException();
-                        }
-                        nota.StatusDocumento = statusDocumentoInserido;
+                    var statusDocumentoInserido = Console.ReadLine() ?? string.Empty;
+                    if (statusDocumentoInserido == "1")
+                    {
+                        statusDocumentoInserido = "Ativo";
+                        escolhaStatusDocumento = true;
                     }
-                    catch (OpcaoInexistenteException) { }
-
+                    else if (statusDocumentoInserido == "2")
+                    {
+                        statusDocumentoInserido = "Em transição.";
+                        escolhaStatusDocumento = true;
+                    }
+                    else if (statusDocumentoInserido == "3")
+                    {
+                        statusDocumentoInserido = "Suspenso";
+                        escolhaStatusDocumento = true;
+                    }
+                    else
+                    {
+                        throw new OpcaoInexistenteException();
+                    }
+                    nota.StatusDocumento = statusDocumentoInserido;
                 }
+                catch (OpcaoInexistenteException) { }
+
+            }
 
             //Set tipo de documento
 
@@ -82,7 +82,7 @@ namespace DevInDocuments.Entities.Static
                         2- Licença de Funcionamento.
                         3- Contrato.");
                     var escolhaUsuarioDocumento = Console.ReadLine();
-                    
+
                     //O documento é nota fiscal
                     if (escolhaUsuarioDocumento == "1")
                     {
@@ -98,7 +98,7 @@ namespace DevInDocuments.Entities.Static
                                 Console.WriteLine("Insira um valor de produto válido.");
                             }
                         }
-                        
+
                         //Set tipo de imposto
                         while (escolhaTipoImposto == false)
                         {
@@ -137,12 +137,12 @@ namespace DevInDocuments.Entities.Static
                                 {
                                     throw new OpcaoInexistenteException();
                                 }
-                                 nota.TipoImposto = escolhaImpostoUsuario;
+                                nota.TipoImposto = escolhaImpostoUsuario;
                             }
 
                             catch (OpcaoInexistenteException) { }
                         }
-                       
+
 
 
                         decimal valorImpostoInserido;
@@ -155,7 +155,7 @@ namespace DevInDocuments.Entities.Static
                             }
                         }
 
-
+                        escolhaTipoDocumento = true;
 
                     }
 
@@ -166,18 +166,18 @@ namespace DevInDocuments.Entities.Static
 
             }
 
-                nota.NomeEstabelecimento = nomeEstabelecientoInserido;
-                nota.CadastrarDocumento(nota);
-                escolhaTipoDocumento = true;
-                MenuPrincipal.MenuInicial(funcionario);
+            nota.NomeEstabelecimento = nomeEstabelecientoInserido;
+            nota.CadastrarDocumento(nota);
+            escolhaTipoDocumento = true;
+            MenuPrincipal.MenuInicial(funcionario);
 
 
 
 
 
 
-
-            }
 
         }
+
     }
+}
