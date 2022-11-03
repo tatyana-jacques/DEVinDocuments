@@ -73,37 +73,30 @@ namespace DevInDocuments.Entities
         }
 
         public override void ListarDocumento()
-        {
+        {   
             foreach (NotaFiscal x in Listas.ListaNotasFiscais)
             {
                 Console.WriteLine(x);
             }
         }
 
-        public override void AlterarItensDocumento(
-            string nomeEstabelecimento,
-            string cnpj,
-            string identificacaoFuncionario)
-        {
-            if (nomeEstabelecimento == null)
-            {
-                throw new CampoNuloException("Insira um nome de estabelecimento válido.");
+        
+        public void AlterarDocumento(NotaFiscal nota){
+    
+                Console.WriteLine("Insira o novo nome de estabelecimento: ");
+                nota.NomeEstabelecimento = Console.ReadLine() ?? string.Empty;
+                Console.WriteLine($"Nota Fiscal alterada: {nota}");
+
             }
-            if (cnpj == null)
-            {
-                throw new CampoNuloException("Insira um nome de estabelecimento válido.");
-            }
-            NomeEstabelecimento = nomeEstabelecimento;
-            CNPJ = cnpj;
-            DataAlteracao = DateTime.Now;
-            IdentificacaoFuncionario = identificacaoFuncionario;
-        }
+
+        
 
         public override string ToString()
         {
             return @$"Dados da Nota Fiscal:
             Código do documento : {codigoDocumento};
             Data de cadastro : {dataCadastro};
+            Status do documento: {StatusDocumento};
             Nome do Estabelecimento: {NomeEstabelecimento};
             CNPJ: {CNPJ};
             Identificação do Funcionário: {IdentificacaoFuncionario};

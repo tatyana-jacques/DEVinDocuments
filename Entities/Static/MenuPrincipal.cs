@@ -17,7 +17,7 @@ namespace DevInDocuments.Entities
                 try
                 {
 
-                    Console.WriteLine(@$"Insira o número da operação que deseja fazer:
+                Console.WriteLine(@$"Insira o número da operação que deseja fazer:
                 1- Cadastrar documento;
                 2-Listar documento;
                 3-Alterar documento;
@@ -37,15 +37,19 @@ namespace DevInDocuments.Entities
                     }
 
                     //Editar documento
-                    if (escolhaMenuInicial == "2")
+                    else if (escolhaMenuInicial == "2")
                     {
                         MenuListarDocumentos.EscolherListaDocumentos(funcionarioOperando);
                          entrarMenuInicial=true;
+                    }
 
+                    else if (escolhaMenuInicial == "3")
+                    {
+                        AlterarDocumento.EditarDocumento(funcionario);
                     }
 
                     //Sair do programa
-                    if (escolhaMenuInicial == "6")
+                    else if (escolhaMenuInicial == "6")
                     {
                         entrarMenuInicial=true;
                         break;
@@ -56,7 +60,6 @@ namespace DevInDocuments.Entities
                         throw new OpcaoInexistenteException();
 
                     }
-
 
                 }
                 catch(OpcaoInexistenteException){}

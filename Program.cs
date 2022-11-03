@@ -1,7 +1,5 @@
 ﻿using DevInDocuments.Entities;
 
-
-
 Listas.ListaFuncionarios();
 
 try{

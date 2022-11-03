@@ -5,7 +5,7 @@ namespace DevInDocuments.Entities
     public class DevInDocuments
     {
         protected DateTime dataCadastro;
-        protected string codigoDocumento;
+        internal string codigoDocumento;
         public DateTime DataAlteracao { get; set; }
         public string NomeEstabelecimento { get; set; }
         public string CNPJ { get; set; }
