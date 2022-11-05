@@ -14,7 +14,8 @@ namespace DevInDocuments.Entities
                     Console.Write("Insira o número de sua identidade para começar:");
 
                     identidadeInserida = Console.ReadLine() ?? string.Empty;
-                    var identidadeEncontrada = Listas.ListaFuncionarios().Where(p => p.Id == identidadeInserida).First();
+                    var identidadeEncontrada = Listas.Funcionarios.Where(p => p.Id == identidadeInserida).First();
+                    Console.Clear();
                     Console.WriteLine($"Bem vindo(a) ao sistema de cadastro e consulta de documentos.{identidadeEncontrada}");
                     Console.WriteLine();
                     Console.WriteLine("==============================================");

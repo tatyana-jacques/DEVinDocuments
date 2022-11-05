@@ -3,15 +3,7 @@ namespace DevInDocuments.Entities.Static
 {
     public static class CadastrarLicenca
     {
-        public static void cadastroLicenca(string funcionario){
-
-            LicencaFuncionamento licenca = new LicencaFuncionamento(string.Empty,
-                        cnpj: string.Empty,
-                        identificacaoFuncionario: string.Empty,
-                        endereco: string.Empty,
-                        areaAtuacao: string.Empty,
-                        statusDocumento: string.Empty);
-                        licenca.IdentificacaoFuncionario = funcionario;
+        public static LicencaFuncionamento CadastroLicenca(string funcionario, LicencaFuncionamento licenca){
 
             //Set nome
             while (licenca.NomeEstabelecimento == string.Empty)
@@ -37,14 +29,11 @@ namespace DevInDocuments.Entities.Static
             licenca.StatusDocumento = CadastrarStatusDocumento.CadastroStatus().ToString();
 
              //Set area atuacao
-             MenuAreaAtuacao.AreaAtuacao();
              licenca.AreaAtuacao = MenuAreaAtuacao.AreaAtuacao().ToString();
 
-             licenca.CadastrarDocumento(licenca);
-             MenuPrincipal.MenuInicial(funcionario);
+             return licenca;
         }
 
 
-   
     }
 }

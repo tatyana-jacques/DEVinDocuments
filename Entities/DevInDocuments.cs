@@ -1,8 +1,9 @@
 using DevInDocuments.Entities.Exceptions;
+using DevInDocuments.Entities.Static;
 
 namespace DevInDocuments.Entities
 {
-    public class DevInDocuments
+    public abstract class DevInDocuments
     {
         protected DateTime dataCadastro;
         internal string codigoDocumento;
@@ -39,21 +40,55 @@ namespace DevInDocuments.Entities
             StatusDocumento = statusDocumento;
         }
 
-        public virtual void CadastrarDocumento(DevInDocuments documento)
+        public virtual void CadastrarDocumento(string funcionario)
         {
+
         }
 
         public virtual void ListarDocumento()
         {
+            foreach (DevInDocuments x in Listas.Lista)
+            {
+                Console.WriteLine(x);
+            }
         }
 
-        public virtual void AlterarDocumento()
-        {
-           
-        }
-        public void AlterarStatus(string novoStatus)
+        public virtual void AlterarDocumento(string funcionario)
         {
 
+        }
+        public void AlterarStatus()
+        {
+            bool inserirCodigo = false;
+            string documentoEscolhido = string.Empty;
+            while (inserirCodigo == false)
+            {
+                Console.WriteLine();
+                Console.WriteLine ("Lista de documentos disponíveis: ");
+              Listas.ListarTodosDocumentos();
+                Console.WriteLine("Digite os quatro primeiros dígitos do código do documento que deseja alterar: ");
+                documentoEscolhido = Console.ReadLine() ?? string.Empty;
+                if (documentoEscolhido.Length != 4)
+                {
+                    Console.WriteLine("Você deve inserir quatro caracteres!");
+                }
+                else
+                {
+                    foreach (DevInDocuments x in Listas.Lista)
+                    {
+                        if (x.codigoDocumento.StartsWith(documentoEscolhido))
+                        {
+                            inserirCodigo = true;
+                            Console.WriteLine($"Documento escolhido: {x}");
+                            x.StatusDocumento = CadastrarStatusDocumento.CadastroStatus().ToString();
+                            Console.WriteLine (x);
+                            Console.WriteLine(@$"Data de alteracao : {x.DataAlteracao}
+                            Documento alterado com sucesso!");
+
+                        }
+                    }
+                }
+            }
 
         }
 

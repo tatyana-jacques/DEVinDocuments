@@ -8,10 +8,12 @@ namespace DevInDocuments.Entities.Static
             while (escolhaStatus == string.Empty)
             {
 
-                Console.WriteLine(@$"Selecione o número equivalente ao status do documento: 
+                Console.WriteLine(@$"Selecione o status do documento: 
                         1-Ativo;
-                        2-Em transição;
+                        2-Em tramitação;
                         3-Suspenso.");
+
+                Console.Write("Digite sua opção: ");
 
                 var escolhaUsuario = Console.ReadLine() ?? string.Empty;
 
@@ -20,7 +22,7 @@ namespace DevInDocuments.Entities.Static
                     escolhaStatus = "Ativo";
                 }
                 else if (escolhaUsuario == "2")
-                {     
+                {
                     escolhaStatus = "Em transição.";
 
                 }
@@ -30,7 +32,7 @@ namespace DevInDocuments.Entities.Static
                 }
                 else
                 {
-                    Console.WriteLine ("Escolha uma opção válida.");
+                    Console.WriteLine("Escolha uma opção válida.");
                 }
 
             }

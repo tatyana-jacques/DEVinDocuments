@@ -40,33 +40,40 @@ namespace DevInDocuments.Entities
                 throw new CampoNuloException("Insira um endereço válido.");
             }
 
-
             Finalidade = finalidade;
             DataExpiracao = dataExpiracao;
             Testemunhas = testemunhas;
 
         }
-        public override void CadastrarDocumento(DevInDocuments documento)
-        {
-            //lista.Add(documento);
-        }
+        // public override void CadastrarDocumento(DevInDocuments documento)
+        // {
+        //     //lista.Add(documento);
+        // }
 
         public override void ListarDocumento()
         {
-             foreach (Contrato x in Listas.ListaContratos)
+            Console.Clear();
+            Console.WriteLine("Lista de Licenças de Funcionamento: ");
+            foreach (DevInDocuments x in Listas.Lista)
             {
-                Console.WriteLine(x);
+                if (x.GetType() == typeof(Contrato))
+                {
+                    Console.WriteLine(x);
+                }
             }
         }
 
-        public override void AlterarDocumento()
+        public override void AlterarDocumento(string funcionario)
         {
 
         }
 
-          public override string ToString()
+        public override string ToString()
         {
-            return @$"Dados do contrato:
+            return
+            @$"     =========================================================
+
+            Dados do contrato:
             Código do documento : {codigoDocumento};
             Data de cadastro : {dataCadastro};
             Status do documento: {StatusDocumento};
@@ -74,9 +81,9 @@ namespace DevInDocuments.Entities
             CNPJ: {CNPJ};
             Identificação do Funcionário: {IdentificacaoFuncionario};
             Finalidade: {Finalidade};
-            Data de expiração: {DataExpiracao.ToString ("dd/MM/yyyy")}
+            Data de expiração: {DataExpiracao.ToString("dd/MM/yyyy")}
             Testemunhas: {string.Join(", ", Testemunhas)}
-            =========================================================";
+            ";
         }
 
 

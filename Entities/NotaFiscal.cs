@@ -1,4 +1,5 @@
 using DevInDocuments.Entities.Exceptions;
+using DevInDocuments.Entities.Static;
 namespace DevInDocuments.Entities
 {
     public class NotaFiscal : DevInDocuments
@@ -62,127 +63,74 @@ namespace DevInDocuments.Entities
 
         }
 
-        public void CadastrarDocumento(NotaFiscal nota)
+        public override void CadastrarDocumento(string funcionario)
         {
-
-            Listas.ListaNotasFiscais.Add(nota);
-            Console.WriteLine("Documento cadastrado com sucesso!");
+            NotaFiscal nota = new NotaFiscal(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+            nota.IdentificacaoFuncionario = funcionario;
+            Console.Clear();
+            Listas.Lista.Add(CadastrarNotaFiscal.CadastroNotaFiscal(funcionario, nota));
+            Console.WriteLine("Nota cadastrada com sucesso!");
             Console.WriteLine(nota);
-
+            MenuPrincipal.MenuInicial(funcionario);
         }
 
         public override void ListarDocumento()
         {
-            foreach (NotaFiscal x in Listas.ListaNotasFiscais)
+            Console.Clear();
+            Console.WriteLine("Lista de Licenças de Funcionamento: ");
+            foreach (DevInDocuments x in Listas.Lista)
             {
-                Console.WriteLine(x);
+                if (x.GetType() == typeof(NotaFiscal))
+                {
+                    Console.WriteLine(x);
+                }
             }
         }
 
-        public void AlterarDocumento(NotaFiscal nota)
+        public override void AlterarDocumento(string funcionario)
         {
-
-            //Set nome
-            while (nota.NomeEstabelecimento == string.Empty)
+            bool inserirCodigo = false;
+            string documentoEscolhido = string.Empty;
+            while (inserirCodigo == false)
             {
-                Console.Write("Insira o novo nome do estabelecimento: ");
-                nota.NomeEstabelecimento = Console.ReadLine() ?? string.Empty;
-            }
 
-            //Set CNPJ
-            while (nota.CNPJ == string.Empty)
-            {
-                Console.Write("Insira o novo CNPJ: ");
-                nota.CNPJ = Console.ReadLine() ?? string.Empty;
-            }
-            
-            //Set Produto
-            while (nota.NomeProduto == string.Empty)
-            {
-                Console.WriteLine("Insira o novo nome de produto: ");
-                nota.NomeProduto = Console.ReadLine() ?? string.Empty;
-            }
-
-            //Set valor produto
-            Console.WriteLine("Insira o novo valor total do produto: ");
-            bool verificarValorTotal =false;
-            decimal valorTotalInserido=0;
-            while (verificarValorTotal == false)
-            {
-                verificarValorTotal = decimal.TryParse(Console.ReadLine(), out valorTotalInserido);
-                if (verificarValorTotal == false)
+                Console.WriteLine("Digite os quatro primeiros dígitos do código do documento que deseja alterar: ");
+                documentoEscolhido = Console.ReadLine() ?? string.Empty;
+                if (documentoEscolhido.Length != 4)
                 {
-                    Console.WriteLine("Insira um valor de produto válido.");
-                }
-            }
-            nota.ValorTotal = valorTotalInserido;
-
-            //Set tipo de imposto
-            bool escolhaTipoImposto = false;
-            while (escolhaTipoImposto == false)
-            {
-                Console.WriteLine(@$"Escolha o número equivalente ao tipo de imposto: 
-                                1- ICMS;
-                                2- IPI;
-                                3-IOF;
-                                4-Outro;");
-                var escolhaImpostoUsuario = Console.ReadLine() ?? string.Empty;
-                if (escolhaImpostoUsuario == "1")
-                {
-                    escolhaImpostoUsuario = "ICMS";
-                    escolhaTipoImposto = true;
-                }
-                else if (escolhaImpostoUsuario == "2")
-                {
-                    escolhaImpostoUsuario = "IPI";
-                    escolhaTipoImposto = true;
-
-                }
-                else if (escolhaImpostoUsuario == "3")
-                {
-                    escolhaImpostoUsuario = "IOF";
-                    escolhaTipoImposto = true;
-
-                }
-                else if (escolhaImpostoUsuario == "4")
-                {
-                    escolhaImpostoUsuario = "Outro";
-                    escolhaTipoImposto = true;
+                    Console.WriteLine("Você deve inserir quatro caracteres!");
                 }
                 else
                 {
-                    Console.WriteLine("Escolha uma opção válida.");
+                    foreach (DevInDocuments x in Listas.Lista)
+                    {
+                        if (x.GetType() == typeof(NotaFiscal) && x.codigoDocumento.StartsWith(documentoEscolhido))
+                        {
+                            inserirCodigo = true;
+                            Console.WriteLine($"Nota Fiscal escolhida: {x}");
+                            Console.WriteLine("Insira os novos dados para o documento.");
+                            var nota = (NotaFiscal)x;
+                            nota.NomeEstabelecimento = string.Empty;
+                            nota.CNPJ = string.Empty;
+                            nota.NomeProduto = string.Empty;
+                            CadastrarNotaFiscal.CadastroNotaFiscal(funcionario, nota);
+                            Console.WriteLine(@$"Data de alteracao : {nota.DataAlteracao}
+                            Nota Fiscal alterada com sucesso!");
+
+                        }
+                    }
                 }
-
-                nota.TipoImposto = escolhaImpostoUsuario;
-
             }
 
-            //Set valor do imposto
-            bool verificarValorImposto = false;
-            decimal valorImpostoInserido = 0;
-            while (verificarValorImposto == false)
-            {
-                Console.WriteLine("Insira o valor do imposto: ");
-                verificarValorImposto = decimal.TryParse(Console.ReadLine(), out valorImpostoInserido);
-                if (verificarValorImposto == false)
-                {
-                    Console.WriteLine("Insira um valor de produto válido.");
-                }
-            }
-            nota.ValorTotalImposto = valorImpostoInserido;
-
-            nota.CadastrarDocumento(nota);
-            nota.DataAlteracao = DateTime.Now;
-
-            Console.WriteLine(@$"Nota Fiscal alterada: {nota}
-                Data de alteracao : {DataAlteracao}");
 
         }
 
         public override string ToString()
         {
-            return @$"Dados da Nota Fiscal:
+            return
+            @$"         =========================================================
+
+            Dados da Nota Fiscal:
             Código do documento : {codigoDocumento};
             Data de cadastro : {dataCadastro};
             Status do documento: {StatusDocumento};
@@ -193,7 +141,7 @@ namespace DevInDocuments.Entities
             Tipo do Imposto: {TipoImposto};
             Valor total da nota: {ValorTotal.ToString("F2")};
             Valor total do imposto: {ValorTotalImposto.ToString("F2")}
-            =========================================================";
+            ";
 
         }
     }
