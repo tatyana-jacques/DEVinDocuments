@@ -13,7 +13,7 @@ namespace DevInDocuments.Entities.Static.Menus
                         1- Nota Fiscal;
                         2- Licença de Funcionamento;
                         3- Contrato;
-                        4-Voltar ou menu inicia.");
+                        4-Voltar ou menu inicial.");
                         Console.Write ("Digite o número de sua opção: ");
                     var escolhaUsuarioDocumento = Console.ReadLine();
 
@@ -42,8 +42,9 @@ namespace DevInDocuments.Entities.Static.Menus
                     }
 
                 }
-                catch (OpcaoInexistenteException) { }
+                catch (OpcaoInexistenteException) {
                 MenuCadastrar.MenuCadastroDocumento(funcionario);
+                }
         }
     }
 }

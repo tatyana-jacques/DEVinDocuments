@@ -18,7 +18,6 @@ namespace DevInDocuments.Entities
                     var identidadeEncontrada = Listas.Funcionarios.Where(p => p.Id == identidadeInserida).First();
                     Console.Clear();
                     Console.WriteLine($"Bem vindo(a) ao sistema de cadastro e consulta de documentos.{identidadeEncontrada}");
-                    Console.WriteLine();
                     usuarioIdentificado = true;
                 }
                 catch (InvalidOperationException)

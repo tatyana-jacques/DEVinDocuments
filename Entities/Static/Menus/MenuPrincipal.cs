@@ -8,59 +8,54 @@ namespace DevInDocuments.Entities.Static.Menus
     {
         public static void MenuInicial(string funcionario)
         {
-            bool entrarMenuInicial = false;
             string funcionarioOperando = funcionario;
 
-            while (entrarMenuInicial == false)
+            try
             {
-                try
+
+                Console.WriteLine();
+                Console.WriteLine(
+                "==================================================================================" +
+                "\n Selecione a operação que deseja realizar:" +
+                "\n 1- Cadastrar documento; \n 2-Listar documentos;" +
+                "\n 3-Alterar documento;" +
+                "\n 4-Alterar status do documento;" +
+                "\n 5-Relatórios;" +
+                " \n 6 - Sair do sistema.");
+                Console.Write("Digite sua opção: ");
+                var escolhaMenuInicial = Console.ReadLine();
+
+                switch (escolhaMenuInicial)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine(
-                    @$"==================================================================================
-                    Selecione a operação que deseja realizar:
-                    1- Cadastrar documento;
-                    2-Listar documentos;
-                    3-Alterar documento;
-                    4-Alterar status do documento;
-                    5-Relatórios;
-                    6-Sair do sistema.");
-                    Console.Write("Digite sua opção: ");
-                    var escolhaMenuInicial = Console.ReadLine();
-
-                    switch (escolhaMenuInicial)
-                    {
-                        case "1":
-                            entrarMenuInicial = true;
-                            MenuCadastrar.MenuCadastroDocumento(funcionarioOperando);
-                            break;
-                        case "2":
-                            entrarMenuInicial = true;
-                            MenuListarDocumentos.EscolherListaDocumentos(funcionarioOperando);
-                            break;
-                        case "3":
-                            entrarMenuInicial = true;
-                            MenuAlterar.AlterarDocumento(funcionario);
-                            break;
-                        case "4":
-                            Contrato documento = new Contrato(string.Empty, string.Empty, string.Empty, string.Empty);
-                            documento.AlterarStatus();
-                            break;
-                        case "5":
-                            MenuRelatorios.ApresentarRelatorio(funcionario);
-                            entrarMenuInicial = true;
-                            break;
-                        case "6":
-                            entrarMenuInicial = true;
-                            break;
-                        default:
-                            throw new OpcaoInexistenteException();
-                    }
-
+                    case "1":
+                        MenuCadastrar.MenuCadastroDocumento(funcionarioOperando);
+                        break;
+                    case "2":
+                        MenuListarDocumentos.EscolherListaDocumentos(funcionarioOperando);
+                        break;
+                    case "3":
+                        MenuAlterar.AlterarDocumento(funcionario);
+                        break;
+                    case "4":
+                        Contrato documento = new Contrato(string.Empty, string.Empty, string.Empty, string.Empty);
+                        documento.AlterarStatus();
+                        break;
+                    case "5":
+                        MenuRelatorios.ApresentarRelatorio(funcionario);
+                        break;
+                    case "6":
+                        break;
+                    default:
+                        throw new OpcaoInexistenteException();
                 }
-                catch (OpcaoInexistenteException) { }
 
             }
+            catch (OpcaoInexistenteException)
+            {
+                MenuPrincipal.MenuInicial(funcionario);
+            }
+
+
         }
     }
 }
