@@ -44,11 +44,11 @@ namespace DevInDocuments.Entities.Static.Cadastros
 
             while (escolhaTipoImposto == false)
             {
-                Console.WriteLine(@$"Escolha o tipo de imposto: 
-                                1- ICMS;
-                                2- IPI;
-                                3-IOF;
-                                4-Outro;");
+                Console.WriteLine("Escolha o tipo de imposto: "+
+                "\n1-ICMS;" + 
+                "\n2-IPI;" +
+                "\n3-IOF;" +
+                "\n4-Outro;");
                 Console.Write("Digite o número de sua opção: ");
                 var escolhaImpostoUsuario = Console.ReadLine() ?? string.Empty;
                 if (escolhaImpostoUsuario == "1")

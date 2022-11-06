@@ -7,8 +7,7 @@ namespace DevInDocuments.Entities.Static
         {
             AreaAtuacao areaAtuacao = AreaAtuacao.Outro;
 
-            Console.WriteLine(
-                "\n1-Industrial;" + 
+            Console.WriteLine("\n1-Industrial;" + 
                 "\n2-Agropecuário;" +
                 "\n3-Metalúrgico;" + 
                 "\n4-Tecnologia; " + 

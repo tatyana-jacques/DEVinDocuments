@@ -9,10 +9,10 @@ namespace DevInDocuments.Entities.Static.Cadastros
           
                 Console.WriteLine(
                     "==================================================================================" +
-                    "\n Selecione o status:" +  
-                    "\n 1-Ativo;" + 
-                    "\n 2-Em tramitação;" + 
-                    "\n 3-Suspenso.");
+                    "\nSelecione o status:" +  
+                    "\n1-Ativo;" + 
+                    "\n2-Em tramitação;" + 
+                    "\n3-Suspenso.");
 
                 Console.Write("Digite sua opção: ");
 

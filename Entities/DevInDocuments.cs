@@ -1,6 +1,7 @@
 using DevInDocuments.Entities.Validacoes;
 using DevInDocuments.Entities.Static.Cadastros;
 using DevInDocuments.Entities.Enumerators;
+using DevInDocuments.Entities.Static;
 
 namespace DevInDocuments.Entities
 {
@@ -48,6 +49,11 @@ namespace DevInDocuments.Entities
         public virtual void AlterarDocumento(string funcionario) { }
         public void AlterarStatus()
         {
+            
+            Console.WriteLine("==================================================================================" +
+            "\nDocumentos disponíveis para a alteração de status: ");
+            Listas.ListarTodosDocumentos();
+            try{
             var documentoEscolhido = ValidacaoCodigo.Codigo();
             var documentoEncontrado = Listas.Lista.Where(x => x._codigoDocumento.StartsWith(documentoEscolhido)).First();
             Console.WriteLine("Documento escolhido para alteração:" +
@@ -57,6 +63,12 @@ namespace DevInDocuments.Entities
             documentoEncontrado.DataAlteracao = DateTime.Now;
             Console.WriteLine(documentoEncontrado);
             Console.WriteLine(@$"Documento alterado com sucesso!");
+            }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("Código inexistente!");
+                AlterarStatus();
+            }
 
 
 

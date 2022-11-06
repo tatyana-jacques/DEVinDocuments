@@ -8,8 +8,8 @@ namespace DevInDocuments.Entities.Static.Menus
 
             {
                 Console.WriteLine(
-                    "================================================================================== \n" + 
-                    "\nInsira a operação que deseja realizar:"+
+                    "==================================================================================" + 
+                    "\nQual tipo de documento deseja listar?"+
                     "\n1-Listar todos os documentos;"+
                     "\n2-Listar Notas Fiscais;" +
                     "\n3-Listar Licenças de Funcionamento;" +

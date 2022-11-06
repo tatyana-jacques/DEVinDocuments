@@ -23,7 +23,7 @@ namespace DevInDocuments.Entities.Static.Cadastros
                 Console.Write("Insira o Endereço do estabelecimento: ");
                 licenca.Endereco = Console.ReadLine() ?? string.Empty;
             }
-            Console.WriteLine("Insira a área de atuação do estabelecimento.");
+            Console.WriteLine("Insira a área de atuação do estabelecimento: ");
              licenca.AreaAtuacao = MenuAreaAtuacao.EscolhaAreaAtuacao();
             licenca.DataAlteracao = DateTime.Now;
 
