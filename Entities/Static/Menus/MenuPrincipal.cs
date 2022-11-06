@@ -21,7 +21,7 @@ namespace DevInDocuments.Entities.Static.Menus
                 "\n 4-Alterar status do documento;" +
                 "\n 5-Relatórios;" +
                 "\n 6-Sair do sistema.");
-                Console.Write("Digite sua opção: ");
+                Console.Write(" Digite sua opção: ");
                 var escolhaMenuInicial = Console.ReadLine();
 
                 switch (escolhaMenuInicial)
