@@ -1,5 +1,5 @@
 
-namespace DevInDocuments.Entities.Static
+namespace DevInDocuments.Entities.Static.Cadastros
 {
     public class CadastrarNotaFiscal
     {
@@ -23,7 +23,7 @@ namespace DevInDocuments.Entities.Static
                 nota.CNPJ = Console.ReadLine() ?? string.Empty;
             }
 
-            nota.StatusDocumento = CadastrarStatusDocumento.CadastroStatus().ToString();
+            nota.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
 
             while (nota.NomeProduto == string.Empty)
             {

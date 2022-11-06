@@ -1,5 +1,6 @@
 using DevInDocuments.Entities.Exceptions;
-using DevInDocuments.Entities.Static;
+using DevInDocuments.Entities.Static.Cadastros;
+using DevInDocuments.Entities.Enumerators;
 namespace DevInDocuments.Entities
 {
     public class NotaFiscal : DevInDocuments
@@ -13,13 +14,11 @@ namespace DevInDocuments.Entities
             string cnpj,
             string identificacaoFuncionario,
             string nomeProduto,
-            string tipoImposto,
-            string statusDocumento) :
+            string tipoImposto) :
         base(
              nomeEstabelecimento,
              cnpj,
-             identificacaoFuncionario,
-             statusDocumento)
+             identificacaoFuncionario)
         {
             if (nomeProduto == null)
             {
@@ -37,16 +36,18 @@ namespace DevInDocuments.Entities
             string nomeEstabelecimento,
             string cnpj,
             string identificacaoFuncionario,
+            DateTime dataAlteracao,
             string nomeProduto,
             string tipoImposto,
-            string statusDocumento,
+            Status statusDocumento,
             decimal valorTotal,
             decimal valorTotalImposto) :
         base(
              nomeEstabelecimento,
              cnpj,
              identificacaoFuncionario,
-             statusDocumento)
+             statusDocumento,
+             dataAlteracao)
         {
             if (nomeProduto == null)
             {
@@ -62,21 +63,18 @@ namespace DevInDocuments.Entities
             ValorTotalImposto = valorTotalImposto;
 
         }
-
+        
         public override void CadastrarDocumento(string funcionario)
         {
-            NotaFiscal nota = new NotaFiscal(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+            NotaFiscal nota = new NotaFiscal(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
             nota.IdentificacaoFuncionario = funcionario;
-            Console.Clear();
             Listas.Lista.Add(CadastrarNotaFiscal.CadastroNotaFiscal(funcionario, nota));
             Console.WriteLine("Nota cadastrada com sucesso!");
             Console.WriteLine(nota);
-            MenuPrincipal.MenuInicial(funcionario);
         }
 
         public override void ListarDocumento()
         {
-            Console.Clear();
             Console.WriteLine("Lista de Licenças de Funcionamento: ");
             foreach (DevInDocuments x in Listas.Lista)
             {
@@ -93,8 +91,7 @@ namespace DevInDocuments.Entities
             string documentoEscolhido = string.Empty;
             while (inserirCodigo == false)
             {
-
-                Console.WriteLine("Digite os quatro primeiros dígitos do código do documento que deseja alterar: ");
+                Console.Write("Digite os quatro primeiros caracteres do código da Nota Fiscal que deseja alterar: ");
                 documentoEscolhido = Console.ReadLine() ?? string.Empty;
                 if (documentoEscolhido.Length != 4)
                 {
@@ -104,7 +101,7 @@ namespace DevInDocuments.Entities
                 {
                     foreach (DevInDocuments x in Listas.Lista)
                     {
-                        if (x.GetType() == typeof(NotaFiscal) && x.codigoDocumento.StartsWith(documentoEscolhido))
+                        if (x.GetType() == typeof(NotaFiscal) && x._codigoDocumento.StartsWith(documentoEscolhido))
                         {
                             inserirCodigo = true;
                             Console.WriteLine($"Nota Fiscal escolhida: {x}");
@@ -114,15 +111,12 @@ namespace DevInDocuments.Entities
                             nota.CNPJ = string.Empty;
                             nota.NomeProduto = string.Empty;
                             CadastrarNotaFiscal.CadastroNotaFiscal(funcionario, nota);
-                            Console.WriteLine(@$"Data de alteracao : {nota.DataAlteracao}
-                            Nota Fiscal alterada com sucesso!");
+                            Console.WriteLine("Nota Fiscal alterada com sucesso!");
 
                         }
                     }
                 }
             }
-
-
         }
 
         public override string ToString()
@@ -131,8 +125,9 @@ namespace DevInDocuments.Entities
             @$"         =========================================================
 
             Dados da Nota Fiscal:
-            Código do documento : {codigoDocumento};
-            Data de cadastro : {dataCadastro};
+            Código do documento: {_codigoDocumento};
+            Data de cadastro: {_dataCadastro};
+            Data da última alteracao:  {DataAlteracao};
             Status do documento: {StatusDocumento};
             Nome do Estabelecimento: {NomeEstabelecimento};
             CNPJ: {CNPJ};
@@ -142,9 +137,9 @@ namespace DevInDocuments.Entities
             Valor total da nota: {ValorTotal.ToString("F2")};
             Valor total do imposto: {ValorTotalImposto.ToString("F2")}
             ";
-
         }
     }
+
 
 
 }

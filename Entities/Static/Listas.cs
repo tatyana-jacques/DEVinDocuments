@@ -1,4 +1,5 @@
 
+using DevInDocuments.Entities.Enumerators;
 namespace DevInDocuments.Entities
 {
 
@@ -9,9 +10,10 @@ namespace DevInDocuments.Entities
                 nomeEstabelecimento: "DEVinHouse",
                 cnpj: "2934569783",
                 identificacaoFuncionario: "1234",
+                dataAlteracao: new DateTime (2020,12,03),
                 nomeProduto: "Curso Frontend",
+                statusDocumento: Status.Ativo,
                 tipoImposto: "ICMS",
-                statusDocumento: "Ativo",
                 valorTotal: 450.50m,
                 valorTotalImposto: 45.05m),
 
@@ -19,9 +21,10 @@ namespace DevInDocuments.Entities
                 nomeEstabelecimento: "Ruido Rosa",
                 cnpj: "1248394039",
                 identificacaoFuncionario: "2345",
+                dataAlteracao: new DateTime (2012,10,03),
                 nomeProduto: "Pacote de efeitos sonoros",
                 tipoImposto: "IOF",
-                statusDocumento: "Em tramitação",
+                statusDocumento: Status.Tramitando,
                 valorTotal: 230.00m,
                 valorTotalImposto: 7.50m),
 
@@ -29,35 +32,39 @@ namespace DevInDocuments.Entities
                 nomeEstabelecimento: "DEVinHouse",
                 cnpj: "2934569783",
                 identificacaoFuncionario: "1234",
+                dataAlteracao: new DateTime (2022,07,03),
                 endereco: "Rua Anita Garibaldi n°20",
                 areaAtuacao: "Tecnologia",
-                statusDocumento: "Ativo"),
+                statusDocumento: Status.Suspenso),
 
             new LicencaFuncionamento(
                 nomeEstabelecimento: "Ruido Rosa",
                 cnpj: "1248394039",
                 identificacaoFuncionario: "2345",
+                dataAlteracao: new DateTime (2021,11,11),
                 endereco: "Praça XV de Novembro n°90",
                 areaAtuacao: "Outro",
-                statusDocumento: "Em tramitação"),
+                statusDocumento: Status.Tramitando),
 
                 new Contrato(
                 nomeEstabelecimento: "DEVinHouse",
                 cnpj: "2934569783",
                 identificacaoFuncionario: "1234",
+                dataAlteracao: new DateTime (2020,02,12),
                 finalidade: "Prestação de serviços educacionais",
                 testemunhas: new string[2] {"Maria Rita", "Marisa Monte"},
                 dataExpiracao: new DateTime (2023,05,04),
-                statusDocumento: "Ativo"),
+                statusDocumento: Status.Suspenso),
 
             new Contrato(
                 nomeEstabelecimento: "Ruido Rosa",
                 cnpj: "1248394039",
                 identificacaoFuncionario: "2345",
+                dataAlteracao: new DateTime (2013,05,08),
                 finalidade: "Prestação de serviços artísticos.",
                 testemunhas: new string[2] {"Rita Lee", "Sergio Dias"},
                 dataExpiracao: new DateTime (2030,07,08),
-                statusDocumento: "Em tramitação")
+                statusDocumento: Status.Ativo)
 
         };
 

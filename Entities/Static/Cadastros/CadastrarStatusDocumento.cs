@@ -1,14 +1,16 @@
-namespace DevInDocuments.Entities.Static
+using DevInDocuments.Entities.Enumerators;
+namespace DevInDocuments.Entities.Static.Cadastros
 {
     public static class CadastrarStatusDocumento
     {
-        public static string CadastroStatus()
+        public static Status CadastroStatus()
         {
-            var escolhaStatus = string.Empty;
-            while (escolhaStatus == string.Empty)
+            bool escolhaStatus = false;
+            Status enumStatus = Status.Tramitando;
+            while (escolhaStatus == false)
             {
 
-                Console.WriteLine(@$"Selecione o status do documento: 
+                Console.WriteLine(@$"Selecione o status: 
                         1-Ativo;
                         2-Em tramitação;
                         3-Suspenso.");
@@ -17,28 +19,31 @@ namespace DevInDocuments.Entities.Static
 
                 var escolhaUsuario = Console.ReadLine() ?? string.Empty;
 
-                if (escolhaUsuario == "1")
+                switch (escolhaUsuario)
                 {
-                    escolhaStatus = "Ativo";
-                }
-                else if (escolhaUsuario == "2")
-                {
-                    escolhaStatus = "Em transição.";
+                    case "1":
+                        enumStatus = Status.Ativo;
+                        escolhaStatus = true;
+                        break;
 
-                }
-                else if (escolhaUsuario == "3")
-                {
-                    escolhaStatus = "Suspenso";
-                }
-                else
-                {
-                    Console.WriteLine("Escolha uma opção válida.");
+                    case "2":
+                        enumStatus = Status.Tramitando;
+                        escolhaStatus = true;
+                        break;
+
+                    case "3":
+                        enumStatus = Status.Suspenso;
+                        escolhaStatus = true;
+                        break;
+                    default:
+                        Console.WriteLine("Escolha uma opção válida.");
+                        break;
+
                 }
 
             }
-            return escolhaStatus;
+            return enumStatus;
 
         }
-
     }
 }

@@ -1,11 +1,12 @@
 namespace DevInDocuments.Entities
 {
-    public class ValidarFuncionario
+    public static class ValidarFuncionario
     {
-        bool usuarioIdentificado = false;
-        string identidadeInserida = string.Empty;
-        public string ValidacaoFuncionario()
+
+        public static string ValidacaoFuncionario()
         {
+            bool usuarioIdentificado = false;
+            string identidadeInserida = string.Empty;
             Console.WriteLine("Olá Funcionário(a).");
             while (usuarioIdentificado == false)
             {
@@ -18,7 +19,6 @@ namespace DevInDocuments.Entities
                     Console.Clear();
                     Console.WriteLine($"Bem vindo(a) ao sistema de cadastro e consulta de documentos.{identidadeEncontrada}");
                     Console.WriteLine();
-                    Console.WriteLine("==============================================");
                     usuarioIdentificado = true;
                 }
                 catch (InvalidOperationException)

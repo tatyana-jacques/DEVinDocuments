@@ -1,10 +1,13 @@
 using DevInDocuments.Entities.Exceptions;
-using DevInDocuments.Entities.Static;
+using DevInDocuments.Entities.Static.Cadastros;
+using DevInDocuments.Entities.Static.Menus;
+using DevInDocuments.Entities.Enumerators;
 
 namespace DevInDocuments.Entities
 {
     public class LicencaFuncionamento : DevInDocuments
     {
+
         public string Endereco { get; set; }
         public string AreaAtuacao { get; set; }
 
@@ -13,10 +16,32 @@ namespace DevInDocuments.Entities
            string cnpj,
            string identificacaoFuncionario,
            string endereco,
-           string areaAtuacao,
-           string statusDocumento
+           string areaAtuacao
            ) :
-           base(nomeEstabelecimento, cnpj, identificacaoFuncionario, statusDocumento)
+           base(nomeEstabelecimento, cnpj, identificacaoFuncionario)
+        {
+            if (endereco == null)
+            {
+                throw new CampoNuloException("Insira um endereço válido.");
+            }
+            if (areaAtuacao == null)
+            {
+                throw new CampoNuloException("Insira uma área de atuação.");
+            }
+
+            Endereco = endereco;
+            AreaAtuacao = areaAtuacao;
+        }
+        public LicencaFuncionamento(
+           string nomeEstabelecimento,
+           string cnpj,
+           string identificacaoFuncionario,
+           string endereco,
+           string areaAtuacao,
+           Status statusDocumento,
+           DateTime dataAlteracao
+           ) :
+           base(nomeEstabelecimento, cnpj, identificacaoFuncionario, statusDocumento, dataAlteracao)
         {
             if (endereco == null)
             {
@@ -33,7 +58,7 @@ namespace DevInDocuments.Entities
 
         public override void CadastrarDocumento(string funcionario)
         {
-            LicencaFuncionamento licenca = new LicencaFuncionamento(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+            LicencaFuncionamento licenca = new LicencaFuncionamento(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
             licenca.IdentificacaoFuncionario = funcionario;
             Console.Clear();
             Listas.Lista.Add(CadastrarLicenca.CadastroLicenca(funcionario, licenca));
@@ -44,7 +69,6 @@ namespace DevInDocuments.Entities
 
         public override void ListarDocumento()
         {
-            Console.Clear();
             Console.WriteLine("Lista de Licenças de Funcionamento: ");
             foreach (DevInDocuments x in Listas.Lista)
             {
@@ -62,7 +86,7 @@ namespace DevInDocuments.Entities
             while (inserirCodigo == false)
             {
 
-                Console.WriteLine("Digite os quatro primeiros dígitos do código do documento que deseja alterar: ");
+                Console.Write("Digite os quatro primeiros caracteres do código daa Licença que deseja alterar: ");
                 documentoEscolhido = Console.ReadLine() ?? string.Empty;
                 if (documentoEscolhido.Length != 4)
                 {
@@ -72,7 +96,7 @@ namespace DevInDocuments.Entities
                 {
                     foreach (DevInDocuments x in Listas.Lista)
                     {
-                        if (x.GetType() == typeof(LicencaFuncionamento) && x.codigoDocumento.StartsWith(documentoEscolhido))
+                        if (x.GetType() == typeof(LicencaFuncionamento) && x._codigoDocumento.StartsWith(documentoEscolhido))
                         {
                             inserirCodigo = true;
                             Console.WriteLine($"Licença de Funcionamento escolhida: {x}");
@@ -96,11 +120,12 @@ namespace DevInDocuments.Entities
         public override string ToString()
         {
             return
-            @$"     =========================================================
+            @$"==================================================================================
 
             Dados da Licença de Funcionamento:
-            Código do documento : {codigoDocumento};
-            Data de cadastro : {dataCadastro};
+            Código do documento: {_codigoDocumento};
+            Data de cadastro: {_dataCadastro};
+            Data da última alteracao: {DataAlteracao};
             Status do documento: {StatusDocumento};
             Nome do Estabelecimento: {NomeEstabelecimento};
             CNPJ: {CNPJ};
@@ -110,7 +135,6 @@ namespace DevInDocuments.Entities
             ";
 
         }
-
 
     }
 

@@ -1,4 +1,6 @@
 using DevInDocuments.Entities.Exceptions;
+using DevInDocuments.Entities.Static.Cadastros;
+using DevInDocuments.Entities.Enumerators;
 namespace DevInDocuments.Entities
 {
     public class Contrato : DevInDocuments
@@ -11,16 +13,14 @@ namespace DevInDocuments.Entities
            string nomeEstabelecimento,
            string cnpj,
            string identificacaoFuncionario,
-           string finalidade,
-           string statusDocumento
+           string finalidade
            ) :
-           base(nomeEstabelecimento, cnpj, identificacaoFuncionario, statusDocumento)
+           base(nomeEstabelecimento, cnpj, identificacaoFuncionario)
         {
             if (finalidade == null)
             {
                 throw new CampoNuloException("Insira um endereço válido.");
             }
-
             Finalidade = finalidade;
 
         }
@@ -29,11 +29,12 @@ namespace DevInDocuments.Entities
            string cnpj,
            string identificacaoFuncionario,
            string finalidade,
-           string statusDocumento,
+           Status statusDocumento,
+           DateTime dataAlteracao,
            DateTime dataExpiracao,
            string[] testemunhas
            ) :
-           base(nomeEstabelecimento, cnpj, identificacaoFuncionario, statusDocumento)
+           base(nomeEstabelecimento, cnpj, identificacaoFuncionario, statusDocumento, dataAlteracao)
         {
             if (finalidade == null)
             {
@@ -45,14 +46,16 @@ namespace DevInDocuments.Entities
             Testemunhas = testemunhas;
 
         }
-        // public override void CadastrarDocumento(DevInDocuments documento)
-        // {
-        //     //lista.Add(documento);
-        // }
+        public override void CadastrarDocumento(string funcionario)
+        {
+            Contrato contrato = new Contrato(string.Empty, string.Empty, string.Empty, string.Empty);
+            contrato.IdentificacaoFuncionario = funcionario;
+            Listas.Lista.Add(CadastrarContrato.CadastroContrato(funcionario, contrato));
+            Console.WriteLine("Contrato Cadastrado com sucesso!");
+        }
 
         public override void ListarDocumento()
         {
-            Console.Clear();
             Console.WriteLine("Lista de Licenças de Funcionamento: ");
             foreach (DevInDocuments x in Listas.Lista)
             {
@@ -71,11 +74,12 @@ namespace DevInDocuments.Entities
         public override string ToString()
         {
             return
-            @$"     =========================================================
+            @$"==================================================================================
 
             Dados do contrato:
-            Código do documento : {codigoDocumento};
-            Data de cadastro : {dataCadastro};
+            Código do documento: {_codigoDocumento};
+            Data de cadastro: {_dataCadastro};
+            Data de alteracao: {DataAlteracao};
             Status do documento: {StatusDocumento};
             Nome do Estabelecimento: {NomeEstabelecimento};
             CNPJ: {CNPJ};
@@ -85,7 +89,6 @@ namespace DevInDocuments.Entities
             Testemunhas: {string.Join(", ", Testemunhas)}
             ";
         }
-
 
     }
 }

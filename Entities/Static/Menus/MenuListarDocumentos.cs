@@ -1,5 +1,5 @@
 
-namespace DevInDocuments.Entities.Static
+namespace DevInDocuments.Entities.Static.Menus
 {
     public static class MenuListarDocumentos
     {
@@ -9,8 +9,8 @@ namespace DevInDocuments.Entities.Static
             bool entrarMenuListarDocumentos = false;
             while (entrarMenuListarDocumentos == false)
             {
-                Console.Clear();
-                Console.WriteLine(@$" ===================================
+                Console.WriteLine(@$"==================================================================================
+
                     Insira a operação que deseja realizar:
                     1- Listar todos os documentos;
                     2- Listar Notas Fiscais;
@@ -30,21 +30,21 @@ namespace DevInDocuments.Entities.Static
                         break;
                     case "2":
                         Console.WriteLine("Seguem todas as Notas Fiscais do sistema: ");
-                        NotaFiscal nota = new NotaFiscal(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+                        NotaFiscal nota = new NotaFiscal(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
                         nota.ListarDocumento();
                         entrarMenuListarDocumentos = true;
                         MenuPrincipal.MenuInicial(funcionario);
                         break;
                     case "3":
                         Console.WriteLine("Seguem todas as Licenças de Funcionamento do sistema: ");
-                        LicencaFuncionamento licenca = new LicencaFuncionamento(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+                        LicencaFuncionamento licenca = new LicencaFuncionamento(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
                         licenca.ListarDocumento();
                         entrarMenuListarDocumentos = true;
                         MenuPrincipal.MenuInicial(funcionario);
                         break;
                     case "4":
                         Console.WriteLine("Seguem todos os Contratos do sistema: ");
-                        Contrato contrato = new Contrato(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+                        Contrato contrato = new Contrato(string.Empty, string.Empty, string.Empty, string.Empty);
                         contrato.ListarDocumento();
                         entrarMenuListarDocumentos = true;
                         MenuPrincipal.MenuInicial(funcionario);
