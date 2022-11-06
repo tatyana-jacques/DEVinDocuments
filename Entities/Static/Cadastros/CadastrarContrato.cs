@@ -21,8 +21,6 @@ namespace DevInDocuments.Entities.Static.Cadastros
                 contrato.CNPJ = Console.ReadLine() ?? string.Empty;
             }
 
-            contrato.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
-
             var dataExpiracao = new DateTime();
 
             while (contrato.Finalidade == string.Empty)
@@ -46,6 +44,7 @@ namespace DevInDocuments.Entities.Static.Cadastros
                 verificarData = DateTime.TryParse(Console.ReadLine(), out dataExpiracao);
                 contrato.DataExpiracao = dataExpiracao;
             }
+            contrato.DataAlteracao = DateTime.Now;
 
             Console.WriteLine(contrato);
             return contrato;

@@ -86,7 +86,7 @@ namespace DevInDocuments.Entities
             while (inserirCodigo == false)
             {
 
-                Console.Write("Digite os quatro primeiros caracteres do código daa Licença que deseja alterar: ");
+                Console.Write("Digite os quatro primeiros caracteres do código da Licença que deseja alterar: ");
                 documentoEscolhido = Console.ReadLine() ?? string.Empty;
                 if (documentoEscolhido.Length != 4)
                 {

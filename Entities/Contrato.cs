@@ -50,13 +50,14 @@ namespace DevInDocuments.Entities
         {
             Contrato contrato = new Contrato(string.Empty, string.Empty, string.Empty, string.Empty);
             contrato.IdentificacaoFuncionario = funcionario;
+            contrato.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
             Listas.Lista.Add(CadastrarContrato.CadastroContrato(funcionario, contrato));
             Console.WriteLine("Contrato Cadastrado com sucesso!");
         }
 
         public override void ListarDocumento()
         {
-            Console.WriteLine("Lista de Licenças de Funcionamento: ");
+            Console.WriteLine("Lista de Contratos: ");
             foreach (DevInDocuments x in Listas.Lista)
             {
                 if (x.GetType() == typeof(Contrato))
@@ -68,13 +69,46 @@ namespace DevInDocuments.Entities
 
         public override void AlterarDocumento(string funcionario)
         {
+            bool inserirCodigo = false;
+            string documentoEscolhido = string.Empty;
+            while (inserirCodigo == false)
+            {
+
+                Console.Write("Digite os quatro primeiros caracteres do código do Contrato que deseja alterar: ");
+                documentoEscolhido = Console.ReadLine() ?? string.Empty;
+                if (documentoEscolhido.Length != 4)
+                {
+                    Console.WriteLine("Você deve inserir quatro caracteres!");
+                }
+                else
+                {
+                    foreach (DevInDocuments x in Listas.Lista)
+                    {
+                        if (x.GetType() == typeof(Contrato) && x._codigoDocumento.StartsWith(documentoEscolhido))
+                        {
+                            inserirCodigo = true;
+                            Console.WriteLine($"Contrato escolhido: {x}");
+                            Console.WriteLine("Insira os novos dados para o documento.");
+                            var contrato = (Contrato)x;
+                            contrato.NomeEstabelecimento = string.Empty;
+                            contrato.CNPJ = string.Empty;
+
+                            CadastrarContrato.CadastroContrato(funcionario, contrato);
+                            Console.WriteLine(@$"Data de alteracao : {contrato.DataAlteracao}
+                            Nota Fiscal alterada com sucesso!");
+
+                        }
+                    }
+                }
+            }
 
         }
 
         public override string ToString()
         {
             return
-            @$"==================================================================================
+            @$"
+            ==================================================================================
 
             Dados do contrato:
             Código do documento: {_codigoDocumento};

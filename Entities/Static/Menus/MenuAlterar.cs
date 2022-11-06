@@ -1,5 +1,4 @@
 
-using DevInDocuments.Entities.Static;
 using DevInDocuments.Entities.Exceptions;
 namespace DevInDocuments.Entities.Static.Menus
 {
@@ -14,7 +13,7 @@ namespace DevInDocuments.Entities.Static.Menus
                 try
                 {
                     Console.WriteLine(
-                    @$"=========================================================
+                    @$"==================================================================================
                     Insira o número da operação que deseja realizar:
                     1- Alterar Nota Fiscal;
                     2- Alterar Licença de Funcionamento;
@@ -30,31 +29,24 @@ namespace DevInDocuments.Entities.Static.Menus
                             entrarMenuAlterarDocumentos = true;
                             NotaFiscal nota = new NotaFiscal(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
                             Console.Clear();
-                            Console.WriteLine("Lista de Notas Fiscais: ");
                             nota.ListarDocumento();
                             nota.AlterarDocumento(funcionario);
-                            MenuPrincipal.MenuInicial(funcionario);
                             break;
                         case "2":
                             entrarMenuAlterarDocumentos = true;
                             LicencaFuncionamento licenca = new LicencaFuncionamento(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
                             Console.Clear();
-                            Console.WriteLine("Lista de Licenças de Funcionamento: ");
                             licenca.ListarDocumento();
                             licenca.AlterarDocumento(funcionario);
-                            MenuPrincipal.MenuInicial(funcionario);
                             break;
                         case "3":
                             entrarMenuAlterarDocumentos = true;
                             Contrato contrato = new Contrato(string.Empty, string.Empty, string.Empty, string.Empty);
-                            Console.WriteLine("Lista de Notas Fiscais: ");
                             contrato.ListarDocumento();
                             contrato.AlterarDocumento(funcionario);
-                            MenuPrincipal.MenuInicial(funcionario);
                             break;
                         case "4":
                             entrarMenuAlterarDocumentos = true;
-                            MenuPrincipal.MenuInicial(funcionario);
                             break;
                         default:
                             throw new OpcaoInexistenteException();
@@ -64,6 +56,7 @@ namespace DevInDocuments.Entities.Static.Menus
                 catch (OpcaoInexistenteException) { }
 
             }
+            MenuPrincipal.MenuInicial(funcionario);
 
         }
     }
