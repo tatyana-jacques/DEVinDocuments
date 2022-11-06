@@ -7,9 +7,10 @@ namespace DevInDocuments.Entities.Exceptions
 {
     public class OpcaoInexistenteException: ApplicationException
     {
-        public OpcaoInexistenteException()
+        public OpcaoInexistenteException(string mensagem)
         {
-            Console.WriteLine ("Opção inexistente. Escolha uma opção válida.");
+            Console.WriteLine ("==================================================================================\n"+
+            mensagem);
         }
         
     }

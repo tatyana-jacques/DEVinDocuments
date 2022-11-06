@@ -8,7 +8,6 @@ namespace DevInDocuments.Entities.Static.Menus
     {
         public static void MenuInicial(string funcionario)
         {
-            string funcionarioOperando = funcionario;
 
             try
             {
@@ -21,17 +20,17 @@ namespace DevInDocuments.Entities.Static.Menus
                 "\n 3-Alterar documento;" +
                 "\n 4-Alterar status do documento;" +
                 "\n 5-Relatórios;" +
-                " \n 6 - Sair do sistema.");
+                "\n 6-Sair do sistema.");
                 Console.Write("Digite sua opção: ");
                 var escolhaMenuInicial = Console.ReadLine();
 
                 switch (escolhaMenuInicial)
                 {
                     case "1":
-                        MenuCadastrar.MenuCadastroDocumento(funcionarioOperando);
+                        MenuCadastrar.MenuCadastroDocumento(funcionario);
                         break;
                     case "2":
-                        MenuListarDocumentos.EscolherListaDocumentos(funcionarioOperando);
+                        MenuListarDocumentos.EscolherListaDocumentos(funcionario);
                         break;
                     case "3":
                         MenuAlterar.AlterarDocumento(funcionario);
@@ -39,6 +38,7 @@ namespace DevInDocuments.Entities.Static.Menus
                     case "4":
                         Contrato documento = new Contrato(string.Empty, string.Empty, string.Empty, string.Empty);
                         documento.AlterarStatus();
+                        MenuPrincipal.MenuInicial(funcionario);
                         break;
                     case "5":
                         MenuRelatorios.ApresentarRelatorio(funcionario);
@@ -46,7 +46,7 @@ namespace DevInDocuments.Entities.Static.Menus
                     case "6":
                         break;
                     default:
-                        throw new OpcaoInexistenteException();
+                        throw new OpcaoInexistenteException("Opção de Menu inexistente.");
                 }
 
             }

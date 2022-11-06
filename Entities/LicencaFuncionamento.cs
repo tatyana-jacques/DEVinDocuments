@@ -1,7 +1,6 @@
-using DevInDocuments.Entities.Exceptions;
+using DevInDocuments.Entities.Enumerators;
 using DevInDocuments.Entities.Static.Cadastros;
 using DevInDocuments.Entities.Static.Menus;
-using DevInDocuments.Entities.Enumerators;
 
 namespace DevInDocuments.Entities
 {
@@ -9,27 +8,25 @@ namespace DevInDocuments.Entities
     {
 
         public string Endereco { get; set; }
-        public string AreaAtuacao { get; set; }
+        public AreaAtuacao AreaAtuacao { get; set; }
 
         public LicencaFuncionamento(
            string nomeEstabelecimento,
            string cnpj,
            string identificacaoFuncionario,
-           string endereco,
-           string areaAtuacao
+           string endereco
            ) :
            base(nomeEstabelecimento, cnpj, identificacaoFuncionario)
         {
 
             Endereco = endereco;
-            AreaAtuacao = areaAtuacao;
         }
         public LicencaFuncionamento(
            string nomeEstabelecimento,
            string cnpj,
            string identificacaoFuncionario,
            string endereco,
-           string areaAtuacao,
+           AreaAtuacao areaAtuacao,
            Status statusDocumento,
            DateTime dataAlteracao
            ) :
@@ -41,7 +38,7 @@ namespace DevInDocuments.Entities
 
         public override void CadastrarDocumento(string funcionario)
         {
-            LicencaFuncionamento licenca = new LicencaFuncionamento(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+            LicencaFuncionamento licenca = new LicencaFuncionamento(string.Empty, string.Empty, string.Empty, string.Empty);
             licenca.IdentificacaoFuncionario = funcionario;
             licenca.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
             Listas.Lista.Add(CadastrarLicenca.CadastroLicenca(funcionario, licenca));

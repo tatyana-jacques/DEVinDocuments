@@ -23,7 +23,8 @@ namespace DevInDocuments.Entities.Static.Cadastros
                 licenca.Endereco = Console.ReadLine() ?? string.Empty;
             }
 
-             licenca.AreaAtuacao = MenuAreaAtuacao.AreaAtuacao().ToString();
+             licenca.AreaAtuacao = MenuAreaAtuacao.EscolhaAreaAtuacao();
+             licenca.DataAlteracao = DateTime.Now;
 
              return licenca;
         }

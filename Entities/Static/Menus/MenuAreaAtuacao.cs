@@ -1,50 +1,48 @@
-
+using DevInDocuments.Entities.Enumerators;
 namespace DevInDocuments.Entities.Static
 {
     public static class MenuAreaAtuacao
     {
-        public static string AreaAtuacao()
+        public static AreaAtuacao EscolhaAreaAtuacao()
         {
-            var AreaAtuacao = string.Empty;
-            while (AreaAtuacao == string.Empty)
+            AreaAtuacao areaAtuacao = AreaAtuacao.Outro;
+
+            Console.WriteLine(
+                "==================================================================================" +
+                "\n 1- Industrial;" + 
+                "\n 2- Agropecuário;" +
+                "\n 3-Metalúrgico;" + 
+                "\n 4-Tecnologia; " + 
+                "\n 5-Outro;");
+
+            Console.Write("Digite o número de sua opção: ");
+
+            var escolhaAreaUsuario = Console.ReadLine() ?? string.Empty;
+
+            switch (escolhaAreaUsuario)
             {
-
-                Console.WriteLine(@$"Escolha a área de atuação do negócio: 
-                                1- Industrial;
-                                2- Agropecuário;
-                                3-Metalúrgico;
-                                4-Tecnologia;
-                                5-Outro;");
-
-                Console.Write("Digite o número de sua opção: ");
-
-                var escolhaAreaUsuario = Console.ReadLine() ?? string.Empty;
-
-                switch (escolhaAreaUsuario)
-                {
-                    case "1":
-                        AreaAtuacao = "Industrial";
-                        break;
-                    case "2":
-                        AreaAtuacao = "Agropecuário";
-                        break;
-                    case "3":
-                        AreaAtuacao = "Metalúrgico";
-                        break;
-                    case "4":
-                        AreaAtuacao = "Tecnologia";
-                        break;
-                    case "5":
-                        AreaAtuacao = "Outro";
-                        break;
-                    default:
-                        Console.WriteLine("Escolha uma opção válida.");
-                        break;
-
-                }
+                case "1":
+                    areaAtuacao = AreaAtuacao.Industrial;
+                    break;
+                case "2":
+                    areaAtuacao = AreaAtuacao.Agropecuario;
+                    break;
+                case "3":
+                    areaAtuacao = AreaAtuacao.Metalurgico;
+                    break;
+                case "4":
+                    areaAtuacao = AreaAtuacao.Tecnologia;
+                    break;
+                case "5":
+                    areaAtuacao = AreaAtuacao.Outro;
+                    break;
+                default:
+                    Console.WriteLine("Escolha uma opção válida.");
+                    MenuAreaAtuacao.EscolhaAreaAtuacao();
+                    break;
 
             }
-            return AreaAtuacao;
+            return areaAtuacao;
         }
     }
 }

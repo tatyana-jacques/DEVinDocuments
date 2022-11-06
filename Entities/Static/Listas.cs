@@ -13,7 +13,7 @@ namespace DevInDocuments.Entities
                 dataAlteracao: new DateTime (2020,12,03),
                 nomeProduto: "Curso Frontend",
                 statusDocumento: Status.Ativo,
-                tipoImposto: "ICMS",
+                tipoImposto: TipoImposto.ICMS,
                 valorTotal: 450.50m,
                 valorTotalImposto: 45.05m),
 
@@ -23,7 +23,7 @@ namespace DevInDocuments.Entities
                 identificacaoFuncionario: "2345",
                 dataAlteracao: new DateTime (2012,10,03),
                 nomeProduto: "Pacote de efeitos sonoros",
-                tipoImposto: "IOF",
+                tipoImposto: TipoImposto.IOF,
                 statusDocumento: Status.Tramitando,
                 valorTotal: 230.00m,
                 valorTotalImposto: 7.50m),
@@ -34,7 +34,7 @@ namespace DevInDocuments.Entities
                 identificacaoFuncionario: "1234",
                 dataAlteracao: new DateTime (2022,07,03),
                 endereco: "Rua Anita Garibaldi n°20",
-                areaAtuacao: "Tecnologia",
+                areaAtuacao: AreaAtuacao.Tecnologia,
                 statusDocumento: Status.Suspenso),
 
             new LicencaFuncionamento(
@@ -43,7 +43,7 @@ namespace DevInDocuments.Entities
                 identificacaoFuncionario: "2345",
                 dataAlteracao: new DateTime (2021,11,11),
                 endereco: "Praça XV de Novembro n°90",
-                areaAtuacao: "Outro",
+                areaAtuacao: AreaAtuacao.Outro,
                 statusDocumento: Status.Tramitando),
 
                 new Contrato(

@@ -1,4 +1,4 @@
-
+using DevInDocuments.Entities.Enumerators;
 namespace DevInDocuments.Entities.Static.Cadastros
 {
     public class CadastrarNotaFiscal
@@ -10,6 +10,7 @@ namespace DevInDocuments.Entities.Static.Cadastros
             bool verificarValorImposto = false;
             decimal valorTotalInserido = 0;
             decimal valorImpostoInserido = 0;
+            TipoImposto tipoImposto = TipoImposto.Indefinido;
 
             while (nota.NomeEstabelecimento == string.Empty)
             {
@@ -48,33 +49,33 @@ namespace DevInDocuments.Entities.Static.Cadastros
                                 2- IPI;
                                 3-IOF;
                                 4-Outro;");
-                Console.Write("Digite sua opção: ");
+                Console.Write("Digite o número de sua opção: ");
                 var escolhaImpostoUsuario = Console.ReadLine() ?? string.Empty;
                 if (escolhaImpostoUsuario == "1")
                 {
-                    escolhaImpostoUsuario = "ICMS";
+                    tipoImposto = TipoImposto.ICMS;
                     escolhaTipoImposto = true;
                 }
                 else if (escolhaImpostoUsuario == "2")
                 {
-                    escolhaImpostoUsuario = "IPI";
+                    tipoImposto = TipoImposto.IPI;
                     escolhaTipoImposto = true;
                 }
                 else if (escolhaImpostoUsuario == "3")
                 {
-                    escolhaImpostoUsuario = "IOF";
+                   tipoImposto = TipoImposto.IOF;
                     escolhaTipoImposto = true;
                 }
                 else if (escolhaImpostoUsuario == "4")
                 {
-                    escolhaImpostoUsuario = "Outro";
+                   tipoImposto = TipoImposto.Outro;
                     escolhaTipoImposto = true;
                 }
                 else
                 {
                     Console.WriteLine("Escolha uma opção válida.");
                 }
-                nota.TipoImposto = escolhaImpostoUsuario;
+                nota.TipoImposto = tipoImposto;
             }
 
             while (verificarValorImposto == false)
@@ -87,10 +88,10 @@ namespace DevInDocuments.Entities.Static.Cadastros
                 }
             }
             nota.ValorTotalImposto = valorImpostoInserido;
+            nota.DataAlteracao = DateTime.Now;
 
             return nota;
 
         }
     }
-
 }

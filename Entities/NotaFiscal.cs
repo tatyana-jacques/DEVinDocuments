@@ -1,4 +1,3 @@
-using DevInDocuments.Entities.Exceptions;
 using DevInDocuments.Entities.Static.Cadastros;
 using DevInDocuments.Entities.Enumerators;
 namespace DevInDocuments.Entities
@@ -7,14 +6,13 @@ namespace DevInDocuments.Entities
     {
         public decimal ValorTotal { get; set; }
         public string NomeProduto { get; set; }
-        public string TipoImposto { get; set; }
+        public  TipoImposto TipoImposto { get; set; }
         public decimal ValorTotalImposto { get; set; }
         public NotaFiscal(
             string nomeEstabelecimento,
             string cnpj,
             string identificacaoFuncionario,
-            string nomeProduto,
-            string tipoImposto) :
+            string nomeProduto) :
         base(
              nomeEstabelecimento,
              cnpj,
@@ -22,7 +20,6 @@ namespace DevInDocuments.Entities
         {
 
             NomeProduto = nomeProduto;
-            TipoImposto = tipoImposto;
 
         }
         public NotaFiscal(
@@ -31,7 +28,7 @@ namespace DevInDocuments.Entities
             string identificacaoFuncionario,
             DateTime dataAlteracao,
             string nomeProduto,
-            string tipoImposto,
+            TipoImposto tipoImposto,
             Status statusDocumento,
             decimal valorTotal,
             decimal valorTotalImposto) :
@@ -51,7 +48,7 @@ namespace DevInDocuments.Entities
 
         public override void CadastrarDocumento(string funcionario)
         {
-            NotaFiscal nota = new NotaFiscal(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+            NotaFiscal nota = new NotaFiscal(string.Empty, string.Empty, string.Empty, string.Empty);
             nota.IdentificacaoFuncionario = funcionario;
             nota.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
             Listas.Lista.Add(CadastrarNotaFiscal.CadastroNotaFiscal(funcionario, nota));
@@ -124,7 +121,7 @@ namespace DevInDocuments.Entities
             Nome do Produto: {NomeProduto};
             Tipo do Imposto: {TipoImposto};
             Valor total da nota: {ValorTotal.ToString("F2")};
-            Valor total do imposto: {ValorTotalImposto.ToString("F2")}
+            Valor total do imposto: {ValorTotalImposto.ToString("F2")}.
             ";
         }
     }
