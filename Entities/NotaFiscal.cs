@@ -1,5 +1,6 @@
 using DevInDocuments.Entities.Static.Cadastros;
 using DevInDocuments.Entities.Enumerators;
+using DevInDocuments.Entities.Validacoes;
 namespace DevInDocuments.Entities
 {
     public class NotaFiscal : DevInDocuments
@@ -18,9 +19,7 @@ namespace DevInDocuments.Entities
              cnpj,
              identificacaoFuncionario)
         {
-
             NomeProduto = nomeProduto;
-
         }
         public NotaFiscal(
             string nomeEstabelecimento,
@@ -55,7 +54,6 @@ namespace DevInDocuments.Entities
             Console.WriteLine("Nota cadastrada com sucesso!");
             Console.WriteLine(nota);
         }
-
         public override void ListarDocumento()
         {
             foreach (DevInDocuments x in Listas.Lista)
@@ -69,56 +67,48 @@ namespace DevInDocuments.Entities
 
         public override void AlterarDocumento(string funcionario)
         {
-            bool inserirCodigo = false;
-            string documentoEscolhido = string.Empty;
-            while (inserirCodigo == false)
+           var documentoEscolhido = ValidacaoCodigo.Codigo();
+            try
             {
-                Console.Write("Digite os quatro primeiros caracteres do código da Nota Fiscal que deseja alterar: ");
-                documentoEscolhido = Console.ReadLine() ?? string.Empty;
-                if (documentoEscolhido.Length != 4)
-                {
-                    Console.WriteLine("Você deve inserir quatro caracteres!");
-                }
-                else
-                {
-                    foreach (DevInDocuments x in Listas.Lista)
-                    {
-                        if (x.GetType() == typeof(NotaFiscal) && x._codigoDocumento.StartsWith(documentoEscolhido))
-                        {
-                            inserirCodigo = true;
-                            Console.WriteLine($"Nota Fiscal escolhida: {x}");
-                            Console.WriteLine("Insira os novos dados para o documento.");
-                            var nota = (NotaFiscal)x;
-                            nota.NomeEstabelecimento = string.Empty;
-                            nota.CNPJ = string.Empty;
-                            nota.NomeProduto = string.Empty;
-                            CadastrarNotaFiscal.CadastroNotaFiscal(nota);
-                            Console.WriteLine(
-                                "=================================================================================="+
-                                "\n Nota Fiscal alterada com sucesso!");
-
-                        }
-                    }
-                }
+                var notaEncontrada = Listas.Lista.Where(x => x._codigoDocumento.StartsWith(documentoEscolhido)).First();
+                Console.WriteLine("Nota Fiscal escolhida:" +
+                $"\n{notaEncontrada}");
+                Console.WriteLine("==================================================================================" +
+                "\nInsira os novos dados para o documento.");
+                var nota = (NotaFiscal)notaEncontrada;
+                nota.NomeEstabelecimento = string.Empty;
+                nota.CNPJ = string.Empty;
+                nota.NomeProduto = string.Empty;
+                CadastrarNotaFiscal.CadastroNotaFiscal(nota);
+                Console.WriteLine(
+                    "==================================================================================" +
+                    "\nNota Fiscal alterada com sucesso!"+
+                    $"\n{nota}");
             }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("Código inexistente!");
+                AlterarDocumento(funcionario);
+            }
+
         }
 
         public override string ToString()
         {
             return
             "=================================================================================="+
-            $" \n Dados da Nota Fiscal:" + 
-            $" \n Código do documento: {_codigoDocumento};" + 
-            $" \n Data de cadastro: {_dataCadastro};" +
-            $" \n Data da última alteracao:  {DataAlteracao};" +
-            $" \n Status do documento: {StatusDocumento};" +
-            $" \n Nome do Estabelecimento: {NomeEstabelecimento};"+
-            $" \n CNPJ: {CNPJ};" +
-            $" \n Identificação do Funcionário: {IdentificacaoFuncionario};" +
-            $" \n Nome do Produto: {NomeProduto};" +
-            $" \n Tipo do Imposto: {TipoImposto};" +
-            $" \n Valor total da nota: {ValorTotal.ToString("F2")};" +
-            $" \n Valor total do imposto: {ValorTotalImposto.ToString("F2")}.";
+            $"\nDados da Nota Fiscal:" + 
+            $"\nCódigo do documento: {_codigoDocumento};" + 
+            $"\nData de cadastro: {_dataCadastro};" +
+            $"\nData da última alteracao:  {DataAlteracao};" +
+            $"\nStatus do documento: {StatusDocumento};" +
+            $"\nNome do Estabelecimento: {NomeEstabelecimento};"+
+            $"\nCNPJ: {CNPJ};" +
+            $"\nIdentificação do Funcionário: {IdentificacaoFuncionario};" +
+            $"\nNome do Produto: {NomeProduto};" +
+            $"\nTipo do Imposto: {TipoImposto};" +
+            $"\nValor total da nota: {ValorTotal.ToString("F2")};" +
+            $"\nValor total do imposto: {ValorTotalImposto.ToString("F2")}.";
         }
     }
 

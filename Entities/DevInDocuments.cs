@@ -1,4 +1,4 @@
-using DevInDocuments.Entities.Static.Menus;
+using DevInDocuments.Entities.Validacoes;
 using DevInDocuments.Entities.Static.Cadastros;
 using DevInDocuments.Entities.Enumerators;
 
@@ -43,44 +43,24 @@ namespace DevInDocuments.Entities
         }
 
 
-        public virtual void CadastrarDocumento(string funcionario){}
-        public virtual void ListarDocumento(){}
-        public virtual void AlterarDocumento(string funcionario){}
+        public virtual void CadastrarDocumento(string funcionario) { }
+        public virtual void ListarDocumento() { }
+        public virtual void AlterarDocumento(string funcionario) { }
         public void AlterarStatus()
         {
-            bool inserirCodigo = false;
-            string documentoEscolhido = string.Empty;
-            while (inserirCodigo == false)
-            {
-                Console.WriteLine();
-                Console.WriteLine("Lista de documentos disponíveis: ");
-                Listas.ListarTodosDocumentos();
-                Console.WriteLine("Digite os quatro primeiros dígitos do código do documento que deseja alterar: ");
-                documentoEscolhido = Console.ReadLine() ?? string.Empty;
-                if (documentoEscolhido.Length != 4)
-                {
-                    Console.WriteLine("Você deve inserir quatro caracteres!");
-                }
-                else
-                {
-                    foreach (DevInDocuments x in Listas.Lista)
-                    {
-                        if (x._codigoDocumento.StartsWith(documentoEscolhido))
-                        {
-                            inserirCodigo = true;
-                            Console.WriteLine(@$"Documento escolhido para alteração: 
-                            {x}");
-                            Console.WriteLine ("Insira o novo status: ");
-                            x.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
-                            x.DataAlteracao = DateTime.Now;
-                            Console.WriteLine(x);
-                            Console.WriteLine(@$"Documento alterado com sucesso!");
+            var documentoEscolhido = ValidacaoCodigo.Codigo();
+            var documentoEncontrado = Listas.Lista.Where(x => x._codigoDocumento.StartsWith(documentoEscolhido)).First();
+            Console.WriteLine("Documento escolhido para alteração:" +
+                             $"\n{documentoEncontrado}");
+            Console.WriteLine("Insira o novo status: ");
+            documentoEncontrado.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
+            documentoEncontrado.DataAlteracao = DateTime.Now;
+            Console.WriteLine(documentoEncontrado);
+            Console.WriteLine(@$"Documento alterado com sucesso!");
 
-                        }
-                    }
-                    
-                }
-            }
+
+
+
         }
     }
 }

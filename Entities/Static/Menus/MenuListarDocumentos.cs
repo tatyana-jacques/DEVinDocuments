@@ -9,11 +9,11 @@ namespace DevInDocuments.Entities.Static.Menus
             {
                 Console.WriteLine(
                     "================================================================================== \n" + 
-                    "\n Insira a operação que deseja realizar:"+
-                    "\n 1-Listar todos os documentos;"+
-                    "\n 2-Listar Notas Fiscais;" +
-                    "\n 3-Listar Licenças de Funcionamento;" +
-                    "\n 4-Listar Contratos;" + 
+                    "\nInsira a operação que deseja realizar:"+
+                    "\n1-Listar todos os documentos;"+
+                    "\n2-Listar Notas Fiscais;" +
+                    "\n3-Listar Licenças de Funcionamento;" +
+                    "\n4-Listar Contratos;" + 
                     "\n5-Voltar ao Menu Inicial.");
                 Console.Write("Digite o número de sua opção: ");
 

@@ -1,12 +1,12 @@
 using DevInDocuments.Entities.Enumerators;
 using DevInDocuments.Entities.Static.Cadastros;
 using DevInDocuments.Entities.Static.Menus;
+using DevInDocuments.Entities.Validacoes;
 
 namespace DevInDocuments.Entities
 {
     public class LicencaFuncionamento : DevInDocuments
     {
-
         public string Endereco { get; set; }
         public AreaAtuacao AreaAtuacao { get; set; }
 
@@ -44,7 +44,7 @@ namespace DevInDocuments.Entities
             Listas.Lista.Add(CadastrarLicenca.CadastroLicenca(licenca));
             Console.WriteLine(licenca);
             Console.WriteLine(
-                "=================================================================================="+
+                "==================================================================================" +
                 "\n Licença cadastrada com sucesso!");
             MenuPrincipal.MenuInicial(funcionario);
         }
@@ -62,57 +62,45 @@ namespace DevInDocuments.Entities
 
         public override void AlterarDocumento(string funcionario)
         {
-            bool inserirCodigo = false;
-            string documentoEscolhido = string.Empty;
-            while (inserirCodigo == false)
+            var documentoEscolhido = ValidacaoCodigo.Codigo();
+            try
             {
-
-                Console.Write("Digite os quatro primeiros caracteres do código da Licença que deseja alterar: ");
-                documentoEscolhido = Console.ReadLine() ?? string.Empty;
-                if (documentoEscolhido.Length != 4)
-                {
-                    Console.WriteLine("Você deve inserir quatro caracteres!");
-                }
-                else
-                {
-                    foreach (DevInDocuments x in Listas.Lista)
-                    {
-                        if (x.GetType() == typeof(LicencaFuncionamento) && x._codigoDocumento.StartsWith(documentoEscolhido))
-                        {
-                            inserirCodigo = true;
-                            Console.WriteLine($"Licença de Funcionamento escolhida: {x}");
-                            Console.WriteLine("Insira os novos dados para o documento.");
-                            var licenca = (LicencaFuncionamento)x;
-                            licenca.NomeEstabelecimento = string.Empty;
-                            licenca.CNPJ = string.Empty;
-                            licenca.Endereco = string.Empty;
-
-                            CadastrarLicenca.CadastroLicenca(licenca);
-                            Console.WriteLine(@$"Data de alteracao : {licenca.DataAlteracao}
-                            Licença de Funcionamento alterada com sucesso!");
-
-                        }
-                    }
-                }
+                var licencaEncontrada = Listas.Lista.Where(x => x._codigoDocumento.StartsWith(documentoEscolhido)).First();
+                Console.WriteLine("Licença escolhida:" +
+                $"\n{licencaEncontrada}");
+                Console.WriteLine("==================================================================================" +
+                "\nInsira os novos dados para o documento.");
+                var licenca = (LicencaFuncionamento)licencaEncontrada;
+                licenca.NomeEstabelecimento = string.Empty;
+                licenca.CNPJ = string.Empty;
+                licenca.Endereco = string.Empty;
+                CadastrarLicenca.CadastroLicenca(licenca);
+                Console.WriteLine(
+                    "==================================================================================" +
+                    "\nLicença de Funcionamento alterada com sucesso!" +
+                    $"\n{licenca}");
             }
-
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("Código inexistente!");
+                AlterarDocumento(funcionario);
+            }
         }
 
         public override string ToString()
         {
             return
-           "=================================================================================="+
-           $" \n Dados da Licença de Funcionamento:" + 
-           $" \n Código do documento: {_codigoDocumento};"+
-           $" \n Data de cadastro: {_dataCadastro};" + 
-           $" \n Data da última alteracao: {DataAlteracao};" + 
-           $" \n Status do documento: {StatusDocumento};" + 
-           $" \n Nome do Estabelecimento: {NomeEstabelecimento};" +
-           $" \n CNPJ: {CNPJ};" +
-           $" \n Identificação do Funcionário: {IdentificacaoFuncionario};" + 
-           $" \n Endereço: {Endereco};" +
-           $" \n Área de Atuação: {AreaAtuacao}";
-
+           "==================================================================================" +
+           $"\nDados da Licença de Funcionamento:" +
+           $"\nCódigo do documento: {_codigoDocumento};" +
+           $"\nData de cadastro: {_dataCadastro};" +
+           $"\nData da última alteracao: {DataAlteracao};" +
+           $"\nStatus do documento: {StatusDocumento};" +
+           $"\nNome do Estabelecimento: {NomeEstabelecimento};" +
+           $"\nCNPJ: {CNPJ};" +
+           $"\nIdentificação do Funcionário: {IdentificacaoFuncionario};" +
+           $"\nEndereço: {Endereco};" +
+           $"\nÁrea de Atuação: {AreaAtuacao}";
         }
 
     }

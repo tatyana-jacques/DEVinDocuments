@@ -7,11 +7,11 @@ namespace DevInDocuments.Entities.Static.Menus
         {
             Console.WriteLine(
                 "==================================================================================" +
-                "\n Selecione o tipo de documento que deseja criar: " + 
-                "\n 1- Nota Fiscal;" + 
-                "\n 2- Licença de Funcionamento;" +
-                "\n 3- Contrato;" + 
-                "\n 4-Voltar ou menu inicial.");
+                "\nSelecione o tipo de documento que deseja criar: " + 
+                "\n1-Nota Fiscal;" + 
+                "\n2-Licença de Funcionamento;" +
+                "\n3-Contrato;" + 
+                "\n4-Voltar ou menu inicial.");
             Console.Write("Digite o número de sua opção: ");
             var escolhaUsuarioDocumento = Console.ReadLine();
 

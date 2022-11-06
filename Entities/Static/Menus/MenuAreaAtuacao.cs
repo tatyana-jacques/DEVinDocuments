@@ -8,12 +8,11 @@ namespace DevInDocuments.Entities.Static
             AreaAtuacao areaAtuacao = AreaAtuacao.Outro;
 
             Console.WriteLine(
-                "==================================================================================" +
-                "\n 1- Industrial;" + 
-                "\n 2- Agropecuário;" +
-                "\n 3-Metalúrgico;" + 
-                "\n 4-Tecnologia; " + 
-                "\n 5-Outro;");
+                "\n1-Industrial;" + 
+                "\n2-Agropecuário;" +
+                "\n3-Metalúrgico;" + 
+                "\n4-Tecnologia; " + 
+                "\n5-Outro;");
 
             Console.Write("Digite o número de sua opção: ");
 
@@ -37,7 +36,7 @@ namespace DevInDocuments.Entities.Static
                     areaAtuacao = AreaAtuacao.Outro;
                     break;
                 default:
-                    Console.WriteLine("Escolha uma opção válida.");
+                    Console.WriteLine("Escolha uma opção válida!");
                     MenuAreaAtuacao.EscolhaAreaAtuacao();
                     break;
 

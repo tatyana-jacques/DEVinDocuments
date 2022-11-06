@@ -8,13 +8,13 @@ namespace DevInDocuments.Entities.Static.Menus
         {
             Console.WriteLine(
             "==================================================================================" +
-            "\n Insira o número da operação que deseja realizar:" +
-            "\n 1-Alterar Nota Fiscal;" +
-            "\n 2-Alterar Licença de Funcionamento;" +
-            "\n 3-Alterar Contrato;" +
-            "\n 4-Voltar ao menu inicial.");
+            "\nQual tipo de documento deseja alterar?" +
+            "\n1-Alterar Nota Fiscal;" +
+            "\n2-Alterar Licença de Funcionamento;" +
+            "\n3-Alterar Contrato;" +
+            "\n4-Voltar ao menu inicial.");
 
-            Console.Write("Digite sua opção: ");
+            Console.Write("Digite o número de sua opção: ");
             var escolhaMenuAlterar = Console.ReadLine();
 
             switch (escolhaMenuAlterar)

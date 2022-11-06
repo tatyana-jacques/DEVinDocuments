@@ -3,7 +3,8 @@ namespace DevInDocuments.Entities.Static.Cadastros
 {
     public static class CadastrarLicenca
     {
-        public static LicencaFuncionamento CadastroLicenca(LicencaFuncionamento licenca){
+        public static LicencaFuncionamento CadastroLicenca(LicencaFuncionamento licenca)
+        {
 
             while (licenca.NomeEstabelecimento == string.Empty)
             {
@@ -22,11 +23,11 @@ namespace DevInDocuments.Entities.Static.Cadastros
                 Console.Write("Insira o Endereço do estabelecimento: ");
                 licenca.Endereco = Console.ReadLine() ?? string.Empty;
             }
-
+            Console.WriteLine("Insira a área de atuação do estabelecimento.");
              licenca.AreaAtuacao = MenuAreaAtuacao.EscolhaAreaAtuacao();
-             licenca.DataAlteracao = DateTime.Now;
+            licenca.DataAlteracao = DateTime.Now;
 
-             return licenca;
+            return licenca;
         }
 
 

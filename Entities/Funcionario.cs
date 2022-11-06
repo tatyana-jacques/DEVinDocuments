@@ -43,13 +43,13 @@ namespace DevInDocuments.Entities
         {
         return 
          "=================================================================================="+
-        $" \n Dados do funcionário operando:" + 
-        $" \n Identidade: {Id};"+
-        $" \n Nome: {Nome};" +
-        $" \n Endereço: {Endereco};"+
-        $" \n Data de nascimento: {DataNascimento.ToString("dd/MM/yyyy")};" +
-        $" \n Filiação: {string.Join(", ", Filiacao)};" +
-        $" \n Data de admissão: {DataAdmissao.ToString("dd/MM/yyyy")}";
+        $"\nDados do funcionário operando:" + 
+        $"\nIdentidade: {Id};"+
+        $"\nNome: {Nome};" +
+        $"\nEndereço: {Endereco};"+
+        $"\nData de nascimento: {DataNascimento.ToString("dd/MM/yyyy")};" +
+        $"\nFiliação: {string.Join(", ", Filiacao)};" +
+        $"\nData de admissão: {DataAdmissao.ToString("dd/MM/yyyy")}";
         }
     }
 }

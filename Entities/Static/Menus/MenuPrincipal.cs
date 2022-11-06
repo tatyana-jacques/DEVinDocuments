@@ -15,13 +15,14 @@ namespace DevInDocuments.Entities.Static.Menus
                 Console.WriteLine();
                 Console.WriteLine(
                 "==================================================================================" +
-                "\n Selecione a operação que deseja realizar:" +
-                "\n 1- Cadastrar documento; \n 2-Listar documentos;" +
-                "\n 3-Alterar documento;" +
-                "\n 4-Alterar status do documento;" +
-                "\n 5-Relatórios;" +
-                "\n 6-Sair do sistema.");
-                Console.Write(" Digite sua opção: ");
+                "\nSelecione a operação que deseja realizar:" +
+                "\n1-Cadastrar documento;" +
+                "\n2-Listar documentos;" +
+                "\n3-Alterar documento;" +
+                "\n4-Alterar status do documento;" +
+                "\n5-Relatórios;" +
+                "\n6-Sair do sistema.");
+                Console.Write("Digite o número de sua opção: ");
                 var escolhaMenuInicial = Console.ReadLine();
 
                 switch (escolhaMenuInicial)

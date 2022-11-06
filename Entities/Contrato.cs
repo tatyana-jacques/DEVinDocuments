@@ -60,23 +60,23 @@ namespace DevInDocuments.Entities
 
         public override void AlterarDocumento(string funcionario)
         {
-
             var documentoEscolhido = ValidacaoCodigo.Codigo();
             try
             {
-                var identidadeEncontrada = Listas.Lista.Where(x => x._codigoDocumento.StartsWith(documentoEscolhido)).First();
+                var contratoEncontrado = Listas.Lista.Where(x => x._codigoDocumento.StartsWith(documentoEscolhido)).First();
                 Console.WriteLine("Contrato escolhido:" +
-                $" \n {identidadeEncontrada}");
+                $"\n{contratoEncontrado}");
                 Console.WriteLine("==================================================================================" +
-                "\n Insira os novos dados para o documento.");
-                var contrato = (Contrato)identidadeEncontrada;
+                "\nInsira os novos dados para o documento.");
+                var contrato = (Contrato)contratoEncontrado;
                 contrato.NomeEstabelecimento = string.Empty;
                 contrato.CNPJ = string.Empty;
 
                 CadastrarContrato.CadastroContrato(contrato);
                 Console.WriteLine(
                     "==================================================================================" +
-                    "\n Contrato alterado com sucesso!");
+                    "\nContrato alterado com sucesso!"+
+                    $"\n{contrato}");
             }
             catch (InvalidOperationException)
             {
@@ -85,8 +85,6 @@ namespace DevInDocuments.Entities
                 AlterarDocumento(funcionario);
             }
 
-
-
         }
 
 
@@ -94,17 +92,17 @@ namespace DevInDocuments.Entities
         {
             return
             "==================================================================================" +
-            $" \n Dados do contrato:" +
-            $" \n Código do documento: {_codigoDocumento};" +
-            $" \n Data de cadastro: {_dataCadastro};" +
-            $" \n Data de alteracao: {DataAlteracao};" +
-            $" \n Status do documento: {StatusDocumento};" +
-            $" \n Nome do Estabelecimento: {NomeEstabelecimento};" +
-            $" \n CNPJ: {CNPJ};" +
-            $" \n Identificação do Funcionário: {IdentificacaoFuncionario};" +
-            $" \n Finalidade: {Finalidade};" +
-            $" \n Data de expiração: {DataExpiracao.ToString("dd/MM/yyyy")}" +
-            $" \n Testemunhas: {string.Join(", ", Testemunhas)}";
+            $"\nDados do contrato:" +
+            $"\nCódigo do documento: {_codigoDocumento};" +
+            $"\nData de cadastro: {_dataCadastro};" +
+            $"\nData de alteracao: {DataAlteracao};" +
+            $"\nStatus do documento: {StatusDocumento};" +
+            $"\nNome do Estabelecimento: {NomeEstabelecimento};" +
+            $"\nCNPJ: {CNPJ};" +
+            $"\nIdentificação do Funcionário: {IdentificacaoFuncionario};" +
+            $"\nFinalidade: {Finalidade};" +
+            $"\nData de expiração: {DataExpiracao.ToString("dd/MM/yyyy")}" +
+            $"\nTestemunhas: {string.Join(", ", Testemunhas)}";
         }
 
     }

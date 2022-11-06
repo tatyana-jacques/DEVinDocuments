@@ -9,8 +9,8 @@
 <p> Foi desenvolvido um Menu em camadas. Algumas opções são apresentadas inicialmente e após a escolha do usuário outras opções são apresentadas.</p>
 
 <h2>Entidades de Classe</h2>
-<h3>DevInDocuments</>
-<p>É a classe pai, da qual derivam as classes NotaFiscal, LicencaFuncionamento e Contrato. Conta com o método CadastrarDocumento, que cadastra objetos das classes filhas na Lista estática de objetos DevInDocuments da classes estática Listas. Também conta com o método AlterarStatus, que recebe um objeto do tipo DevInDocuments e altera seu status e com os métodos Alterardocumento e ListarDocumento. O método AlterarStatus é utilizado diretamente pelas classes filhas de DevInDocuments, enquanto os métodos Listar Documento, Cadastrar Documento e Alterar Documento são sobrescritos em cada classe filha.<p>
+
+<p>DevInDocuments é a classe pai, da qual derivam as classes NotaFiscal, LicencaFuncionamento e Contrato. Conta com o método CadastrarDocumento, que cadastra objetos das classes filhas na Lista estática de objetos DevInDocuments da classes estática Listas. Também conta com o método AlterarStatus, que recebe um objeto do tipo DevInDocuments e altera seu status e com os métodos Alterardocumento e ListarDocumento. O método AlterarStatus é utilizado diretamente pelas classes filhas de DevInDocuments, enquanto os métodos Listar Documento, Cadastrar Documento e Alterar Documento são sobrescritos em cada classe filha.<p>
 
 <p>A escolha pela criaçao do contrutor contendo todos os parâmetros de string deveu-se ao intuito de cancelar o aviso sobre a possibilidade de string nula sem a desabilitação do recurso de alerta de "Nullable" no documento DevInDocuments.csproj</p>
 

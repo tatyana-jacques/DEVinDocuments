@@ -10,12 +10,12 @@ namespace DevInDocuments.Entities.Static.Menus
 
             Console.WriteLine(
             "==================================================================================" +
-            " \n Insira o tipo de relatório que deseja gerar:" +
-            " \n 1 - Listar documentos ativos;" +
-            "\n 2 - Listar documentos em tramitação;" +
-            "\n 3 - Listar documentos suspensos;" +
-            "\n 4 - Apresentar total de documentos;" +
-            "\n 5 - Voltar ao Menu inicial.");
+            "\nInsira o tipo de relatório que deseja gerar:" +
+            "\n1-Listar documentos ativos;" +
+            "\n2-Listar documentos em tramitação;" +
+            "\n3-Listar documentos suspensos;" +
+            "\n4-Apresentar total de documentos;" +
+            "\n5-Voltar ao Menu inicial.");
 
             var escolhaMenuRelatorio = Console.ReadLine();
 
