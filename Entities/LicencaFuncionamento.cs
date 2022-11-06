@@ -41,17 +41,16 @@ namespace DevInDocuments.Entities
             LicencaFuncionamento licenca = new LicencaFuncionamento(string.Empty, string.Empty, string.Empty, string.Empty);
             licenca.IdentificacaoFuncionario = funcionario;
             licenca.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
-            Listas.Lista.Add(CadastrarLicenca.CadastroLicenca(funcionario, licenca));
+            Listas.Lista.Add(CadastrarLicenca.CadastroLicenca(licenca));
             Console.WriteLine(licenca);
-            Console.WriteLine( @$"
-            =========================================================
-            Licença cadastrada com sucesso!");
+            Console.WriteLine(
+                "=================================================================================="+
+                "\n Licença cadastrada com sucesso!");
             MenuPrincipal.MenuInicial(funcionario);
         }
 
         public override void ListarDocumento()
         {
-            Console.WriteLine("Lista de Licenças de Funcionamento: ");
             foreach (DevInDocuments x in Listas.Lista)
             {
                 if (x.GetType() == typeof(LicencaFuncionamento))
@@ -88,9 +87,9 @@ namespace DevInDocuments.Entities
                             licenca.CNPJ = string.Empty;
                             licenca.Endereco = string.Empty;
 
-                            CadastrarLicenca.CadastroLicenca(funcionario, licenca);
+                            CadastrarLicenca.CadastroLicenca(licenca);
                             Console.WriteLine(@$"Data de alteracao : {licenca.DataAlteracao}
-                            Nota Fiscal alterada com sucesso!");
+                            Licença de Funcionamento alterada com sucesso!");
 
                         }
                     }
@@ -102,19 +101,17 @@ namespace DevInDocuments.Entities
         public override string ToString()
         {
             return
-            @$"==================================================================================
-
-            Dados da Licença de Funcionamento:
-            Código do documento: {_codigoDocumento};
-            Data de cadastro: {_dataCadastro};
-            Data da última alteracao: {DataAlteracao};
-            Status do documento: {StatusDocumento};
-            Nome do Estabelecimento: {NomeEstabelecimento};
-            CNPJ: {CNPJ};
-            Identificação do Funcionário: {IdentificacaoFuncionario};
-            Endereço: {Endereco};
-            Área de Atuação: {AreaAtuacao}
-            ";
+           "=================================================================================="+
+           $" \n Dados da Licença de Funcionamento:" + 
+           $" \n Código do documento: {_codigoDocumento};"+
+           $" \n Data de cadastro: {_dataCadastro};" + 
+           $" \n Data da última alteracao: {DataAlteracao};" + 
+           $" \n Status do documento: {StatusDocumento};" + 
+           $" \n Nome do Estabelecimento: {NomeEstabelecimento};" +
+           $" \n CNPJ: {CNPJ};" +
+           $" \n Identificação do Funcionário: {IdentificacaoFuncionario};" + 
+           $" \n Endereço: {Endereco};" +
+           $" \n Área de Atuação: {AreaAtuacao}";
 
         }
 

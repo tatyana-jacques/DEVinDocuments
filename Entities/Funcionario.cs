@@ -41,16 +41,16 @@ namespace DevInDocuments.Entities
 
         public override string ToString()
         {
-        return @$"Dados do funcionário operando:
-            Identidade: {Id};
-            Nome: {Nome};
-            Endereço: {Endereco};
-            Data de nascimento: {DataNascimento.ToString("dd/MM/yyyy")};
-            Filiação: {string.Join(", ", Filiacao)};
-            Data de admissão: {DataAdmissao.ToString("dd/MM/yyyy")}";
-
+        return 
+         "=================================================================================="+
+        $" \n Dados do funcionário operando:" + 
+        $" \n Identidade: {Id};"+
+        $" \n Nome: {Nome};" +
+        $" \n Endereço: {Endereco};"+
+        $" \n Data de nascimento: {DataNascimento.ToString("dd/MM/yyyy")};" +
+        $" \n Filiação: {string.Join(", ", Filiacao)};" +
+        $" \n Data de admissão: {DataAdmissao.ToString("dd/MM/yyyy")}";
         }
     }
-
 }
 

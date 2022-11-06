@@ -3,7 +3,7 @@ namespace DevInDocuments.Entities.Static.Cadastros
 {
     public class CadastrarContrato
     {
-        public static Contrato CadastroContrato(string funcionario, Contrato contrato)
+        public static Contrato CadastroContrato(Contrato contrato)
         {
             bool verificarData = false;
             contrato.Testemunhas[0] = string.Empty;

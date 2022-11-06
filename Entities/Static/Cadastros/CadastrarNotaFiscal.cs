@@ -3,7 +3,7 @@ namespace DevInDocuments.Entities.Static.Cadastros
 {
     public class CadastrarNotaFiscal
     {
-        public static NotaFiscal CadastroNotaFiscal(string funcionario, NotaFiscal nota)
+        public static NotaFiscal CadastroNotaFiscal(NotaFiscal nota)
         {
             bool escolhaTipoImposto = false;
             bool verificarValorTotal = false;

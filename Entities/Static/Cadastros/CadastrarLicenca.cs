@@ -3,7 +3,7 @@ namespace DevInDocuments.Entities.Static.Cadastros
 {
     public static class CadastrarLicenca
     {
-        public static LicencaFuncionamento CadastroLicenca(string funcionario, LicencaFuncionamento licenca){
+        public static LicencaFuncionamento CadastroLicenca(LicencaFuncionamento licenca){
 
             while (licenca.NomeEstabelecimento == string.Empty)
             {

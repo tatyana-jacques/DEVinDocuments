@@ -41,15 +41,14 @@ namespace DevInDocuments.Entities
             Contrato contrato = new Contrato(string.Empty, string.Empty, string.Empty, string.Empty);
             contrato.IdentificacaoFuncionario = funcionario;
             contrato.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
-            Listas.Lista.Add(CadastrarContrato.CadastroContrato(funcionario, contrato));
-            Console.WriteLine(@$"
-            =========================================================
-            Contrato Cadastrado com sucesso!");
+            Listas.Lista.Add(CadastrarContrato.CadastroContrato(contrato));
+            Console.WriteLine(
+                "==================================================================================" +
+                "\n Contrato Cadastrado com sucesso!");
         }
 
         public override void ListarDocumento()
         {
-            Console.WriteLine("Lista de Contratos: ");
             foreach (DevInDocuments x in Listas.Lista)
             {
                 if (x.GetType() == typeof(Contrato))
@@ -85,7 +84,7 @@ namespace DevInDocuments.Entities
                             contrato.NomeEstabelecimento = string.Empty;
                             contrato.CNPJ = string.Empty;
 
-                            CadastrarContrato.CadastroContrato(funcionario, contrato);
+                            CadastrarContrato.CadastroContrato(contrato);
                             Console.WriteLine(@$"Data de alteracao : {contrato.DataAlteracao}
                             Nota Fiscal alterada com sucesso!");
 
@@ -99,21 +98,18 @@ namespace DevInDocuments.Entities
         public override string ToString()
         {
             return
-            @$"
-            ==================================================================================
-
-            Dados do contrato:
-            Código do documento: {_codigoDocumento};
-            Data de cadastro: {_dataCadastro};
-            Data de alteracao: {DataAlteracao};
-            Status do documento: {StatusDocumento};
-            Nome do Estabelecimento: {NomeEstabelecimento};
-            CNPJ: {CNPJ};
-            Identificação do Funcionário: {IdentificacaoFuncionario};
-            Finalidade: {Finalidade};
-            Data de expiração: {DataExpiracao.ToString("dd/MM/yyyy")}
-            Testemunhas: {string.Join(", ", Testemunhas)}
-            ";
+            "==================================================================================" +
+            $" \n Dados do contrato:" + 
+            $" \n Código do documento: { _codigoDocumento};"+
+            $" \n Data de cadastro: { _dataCadastro};"+
+            $" \n Data de alteracao: { DataAlteracao};"+
+            $" \n Status do documento: { StatusDocumento};"+
+            $" \n Nome do Estabelecimento: { NomeEstabelecimento};"+
+            $" \n CNPJ: { CNPJ};"+
+            $" \n Identificação do Funcionário: { IdentificacaoFuncionario};"+
+            $" \n Finalidade: { Finalidade};"+
+            $" \n Data de expiração: { DataExpiracao.ToString("dd/MM/yyyy")}"+
+            $" \n Testemunhas: { string.Join(", ", Testemunhas)}";
         }
 
     }

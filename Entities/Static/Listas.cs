@@ -1,4 +1,3 @@
-
 using DevInDocuments.Entities.Enumerators;
 namespace DevInDocuments.Entities
 {
@@ -96,9 +95,6 @@ namespace DevInDocuments.Entities
             {
                 Console.WriteLine(x);
             }
-
         }
-
-
     }
 }
