@@ -34,6 +34,7 @@ namespace DevInDocuments.Entities.Static.Menus
                                 {
                                     Console.WriteLine(item);
                                 }
+                                entrarMenuRelatorios = true;
                             break;
                         case "2":
                         Console.WriteLine ("Segue a lista de documentos em tramitação: ");
@@ -42,6 +43,7 @@ namespace DevInDocuments.Entities.Static.Menus
                                 {
                                     Console.WriteLine(item);
                                 }
+                                entrarMenuRelatorios = true;
                             break;
                         case "3":
                         Console.WriteLine ("Segue a lista de documentos suspensos: ");
@@ -50,9 +52,11 @@ namespace DevInDocuments.Entities.Static.Menus
                                 {
                                     Console.WriteLine(item);
                                 }
+                                entrarMenuRelatorios = true;
                             break;
                         case "4":
                             Console.WriteLine($"Total de documentos: {Listas.Lista.Count}");
+                            entrarMenuRelatorios = true;
                             break;
                         case "5":
                             break;

@@ -84,7 +84,9 @@ namespace DevInDocuments.Entities
                         if (x._codigoDocumento.StartsWith(documentoEscolhido))
                         {
                             inserirCodigo = true;
-                            Console.WriteLine($"Documento escolhido para alteração: {x}");
+                            Console.WriteLine(@$"Documento escolhido para alteração: 
+                            {x}");
+                            Console.WriteLine ("Insira o novo status: ");
                             x.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
                             x.DataAlteracao = DateTime.Now;
                             Console.WriteLine(x);
