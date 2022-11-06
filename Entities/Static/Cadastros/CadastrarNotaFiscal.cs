@@ -23,8 +23,6 @@ namespace DevInDocuments.Entities.Static.Cadastros
                 nota.CNPJ = Console.ReadLine() ?? string.Empty;
             }
 
-            nota.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
-
             while (nota.NomeProduto == string.Empty)
             {
                 Console.Write("Insira o nome do produto: ");

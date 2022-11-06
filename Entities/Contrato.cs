@@ -17,12 +17,7 @@ namespace DevInDocuments.Entities
            ) :
            base(nomeEstabelecimento, cnpj, identificacaoFuncionario)
         {
-            if (finalidade == null)
-            {
-                throw new CampoNuloException("Insira um endereço válido.");
-            }
             Finalidade = finalidade;
-
         }
         public Contrato(
            string nomeEstabelecimento,
@@ -36,11 +31,6 @@ namespace DevInDocuments.Entities
            ) :
            base(nomeEstabelecimento, cnpj, identificacaoFuncionario, statusDocumento, dataAlteracao)
         {
-            if (finalidade == null)
-            {
-                throw new CampoNuloException("Insira um endereço válido.");
-            }
-
             Finalidade = finalidade;
             DataExpiracao = dataExpiracao;
             Testemunhas = testemunhas;
@@ -52,7 +42,9 @@ namespace DevInDocuments.Entities
             contrato.IdentificacaoFuncionario = funcionario;
             contrato.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
             Listas.Lista.Add(CadastrarContrato.CadastroContrato(funcionario, contrato));
-            Console.WriteLine("Contrato Cadastrado com sucesso!");
+            Console.WriteLine(@$"
+            =========================================================
+            Contrato Cadastrado com sucesso!");
         }
 
         public override void ListarDocumento()

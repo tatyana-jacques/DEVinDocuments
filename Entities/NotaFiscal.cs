@@ -20,14 +20,7 @@ namespace DevInDocuments.Entities
              cnpj,
              identificacaoFuncionario)
         {
-            if (nomeProduto == null)
-            {
-                throw new CampoNuloException("Insira um nome de produto válido.");
-            }
-            if (tipoImposto == null)
-            {
-                throw new CampoNuloException("Insira um nome de produto válido.");
-            }
+
             NomeProduto = nomeProduto;
             TipoImposto = tipoImposto;
 
@@ -49,25 +42,18 @@ namespace DevInDocuments.Entities
              statusDocumento,
              dataAlteracao)
         {
-            if (nomeProduto == null)
-            {
-                throw new CampoNuloException("Insira um nome de produto válido.");
-            }
-            if (tipoImposto == null)
-            {
-                throw new CampoNuloException("Insira um nome de produto válido.");
-            }
             NomeProduto = nomeProduto;
             TipoImposto = tipoImposto;
             ValorTotal = valorTotal;
             ValorTotalImposto = valorTotalImposto;
 
         }
-        
+
         public override void CadastrarDocumento(string funcionario)
         {
             NotaFiscal nota = new NotaFiscal(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
             nota.IdentificacaoFuncionario = funcionario;
+            nota.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
             Listas.Lista.Add(CadastrarNotaFiscal.CadastroNotaFiscal(funcionario, nota));
             Console.WriteLine("Nota cadastrada com sucesso!");
             Console.WriteLine(nota);
@@ -111,7 +97,9 @@ namespace DevInDocuments.Entities
                             nota.CNPJ = string.Empty;
                             nota.NomeProduto = string.Empty;
                             CadastrarNotaFiscal.CadastroNotaFiscal(funcionario, nota);
-                            Console.WriteLine("Nota Fiscal alterada com sucesso!");
+                            Console.WriteLine(@$"
+                             =========================================================
+                             Nota Fiscal alterada com sucesso!");
 
                         }
                     }
@@ -122,8 +110,9 @@ namespace DevInDocuments.Entities
         public override string ToString()
         {
             return
-            @$"         =========================================================
-
+            @$"
+            =========================================================
+            
             Dados da Nota Fiscal:
             Código do documento: {_codigoDocumento};
             Data de cadastro: {_dataCadastro};

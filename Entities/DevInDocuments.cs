@@ -19,14 +19,6 @@ namespace DevInDocuments.Entities
             string cnpj,
             string identificacaoFuncionario)
         {
-            if (nomeEstabelecimento == null)
-            {
-                throw new CampoNuloException("Insira um nome de estabelecimento válido.");
-            }
-            if (cnpj == null)
-            {
-                throw new CampoNuloException("Insira um nome CNPJ válido.");
-            }
             _codigoDocumento = Guid.NewGuid().ToString();
             NomeEstabelecimento = nomeEstabelecimento;
             CNPJ = cnpj;
@@ -41,14 +33,6 @@ namespace DevInDocuments.Entities
             Status statusDocumento,
             DateTime dataAlteracao)
         {
-            if (nomeEstabelecimento == null)
-            {
-                throw new CampoNuloException("Insira um nome de estabelecimento válido.");
-            }
-            if (cnpj == null)
-            {
-                throw new CampoNuloException("Insira um nome CNPJ válido.");
-            }
             _codigoDocumento = Guid.NewGuid().ToString();
             NomeEstabelecimento = nomeEstabelecimento;
             CNPJ = cnpj;

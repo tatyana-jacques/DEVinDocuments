@@ -20,19 +20,7 @@ namespace DevInDocuments.Entities
             string? nomeMae,
             DateTime dataAdmissao)
         {
-            if (nome == null)
-            {
-                throw new CampoNuloException("Insira um nome válido.");
-            }
-            if (endereco == null)
-            {
-                throw new CampoNuloException("Insira um endereço válido.");
-            }
-            if (nomePai == null && nomeMae == null)
-            {
-                throw new CampoNuloException("Insira ao menos um dado de filiação.");
-            }
-
+    
             Id = id;
             Nome = nome;
             Endereco = endereco;

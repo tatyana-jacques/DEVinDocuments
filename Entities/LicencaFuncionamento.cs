@@ -20,14 +20,6 @@ namespace DevInDocuments.Entities
            ) :
            base(nomeEstabelecimento, cnpj, identificacaoFuncionario)
         {
-            if (endereco == null)
-            {
-                throw new CampoNuloException("Insira um endereço válido.");
-            }
-            if (areaAtuacao == null)
-            {
-                throw new CampoNuloException("Insira uma área de atuação.");
-            }
 
             Endereco = endereco;
             AreaAtuacao = areaAtuacao;
@@ -43,15 +35,6 @@ namespace DevInDocuments.Entities
            ) :
            base(nomeEstabelecimento, cnpj, identificacaoFuncionario, statusDocumento, dataAlteracao)
         {
-            if (endereco == null)
-            {
-                throw new CampoNuloException("Insira um endereço válido.");
-            }
-            if (areaAtuacao == null)
-            {
-                throw new CampoNuloException("Insira uma área de atuação.");
-            }
-
             Endereco = endereco;
             AreaAtuacao = areaAtuacao;
         }
@@ -60,10 +43,12 @@ namespace DevInDocuments.Entities
         {
             LicencaFuncionamento licenca = new LicencaFuncionamento(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
             licenca.IdentificacaoFuncionario = funcionario;
-            Console.Clear();
+            licenca.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
             Listas.Lista.Add(CadastrarLicenca.CadastroLicenca(funcionario, licenca));
             Console.WriteLine(licenca);
-            Console.WriteLine("Licença cadastrada com sucesso!");
+            Console.WriteLine( @$"
+            =========================================================
+            Licença cadastrada com sucesso!");
             MenuPrincipal.MenuInicial(funcionario);
         }
 

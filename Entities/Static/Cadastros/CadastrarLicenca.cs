@@ -23,8 +23,6 @@ namespace DevInDocuments.Entities.Static.Cadastros
                 licenca.Endereco = Console.ReadLine() ?? string.Empty;
             }
 
-            licenca.StatusDocumento = CadastrarStatusDocumento.CadastroStatus();
-
              licenca.AreaAtuacao = MenuAreaAtuacao.AreaAtuacao().ToString();
 
              return licenca;
