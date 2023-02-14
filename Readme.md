@@ -1,20 +1,17 @@
 <h1>DEVinDocuments</h1>
-<p>Projeto 01 do Módulo 02 do curso DEVinHouse.</p>
-<p>Turma EDP.</p>
+<p>Project developed during Senai's DEVinHouse (2022). </p>
 
-<h2>Inicialização</h2>
-<p> O projeto inicia-se com a função de autenticar funcionário. Há dois funcionários cadastrados para isso. O primeiro com ID 1234 e ou outro com ID 2345. Bastar entrar com uma dessas identidades para iniciar as opçoes de menu.</p>
+<h2>Startup</h2>
+<p> To start the application you must log in as an "employee". There are two employees registered for this. The first with ID 1234 and the other with ID 2345. Just enter one of these identities to start the menu options.</p>
 
 <h2>Menus</h2>
-<p> Foi desenvolvido um Menu em camadas. Algumas opções são apresentadas inicialmente e após a escolha do usuário outras opções são apresentadas.</p>
+<p> A layered menu was developed. After each user choice, new options are presented.</p>
 
-<h2>Entidades de Classe</h2>
+<h2>Class entities</h2>
 
-<p>DevInDocuments é a classe pai, da qual derivam as classes NotaFiscal, LicencaFuncionamento e Contrato. Conta com o método CadastrarDocumento, que cadastra objetos das classes filhas na Lista estática de objetos DevInDocuments da classes estática Listas. Também conta com o método AlterarStatus, que recebe um objeto do tipo DevInDocuments e altera seu status e com os métodos Alterardocumento e ListarDocumento. O método AlterarStatus é utilizado diretamente pelas classes filhas de DevInDocuments, enquanto os métodos Listar Documento, Cadastrar Documento e Alterar Documento são sobrescritos em cada classe filha.<p>
+<p>"DevInDocuments" is the parent class, from which derive the classes "NotaFiscal", "LicencaFuncionamento" and "Contrato". The parent class has the "CadastrarDocumento" method. This method registers objects of child classes in the "DevInDocuments" static list of the static class "Listas". It also has the "AlterarStatus" method, which receives an object of "DevInDocuments" type and changes its status, as well as the "Alterardocumento" and "ListarDocumento" methods. The "AlterarStatus" method is used directly by the "DevInDocuments" child classes, while the "ListarDocumento", "RegistrarDocumento" and "AlterarDocumento" methods are overridden in each child class.<p>
 
-<p>A escolha pela criaçao do contrutor contendo todos os parâmetros de string deveu-se ao intuito de cancelar o aviso sobre a possibilidade de string nula sem a desabilitação do recurso de alerta de "Nullable" no documento DevInDocuments.csproj</p>
+<p>The constructor containing all strings parameters was created for canceling the null string console warning without disabling the "Nullable" alert feature in the DevInDocuments.csproj. At the same time, the constructor overload was made to make easier the inclusion of example objects in the static list in which the documents are registered.</p>
 
-<p> Ao mesmo tempo, a sobrecarga de construtor foi criada para facilitar a implementação dos objetos criados como exemplo na Lista estática na qual são cadastrados os documentos.</p>
-
-<h2>Lista de Cadastro</h2>
-<p>Foi criada uma lista estática única na qual o usuário cadastra todos os documentos. Nas opções Listar Documentos e Relatórios são apresentadas as opções de filtragem e listagem de documentos.<p>
+<h2>Registration List</h2>
+<p>The user registers all documents in a single static list. The options for filtering and listing documents are shown in the "Listar Documentos" and "Relatórios" menu options.<p>
